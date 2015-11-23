@@ -1,0 +1,49 @@
+.ui-slider-horizontal {
+    height: 0.4em;
+}
+
+.ui-widget-content {
+    border: none;
+    background: #e3e3e3;
+}
+
+.ui-slider .ui-slider-range {
+    background: #40ca9f;
+}
+
+.ui-slider .ui-slider-handle {
+    cursor: pointer;
+    border-radius: 50%;
+    width: 0.9em;
+    height: 0.9em;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -0.25em;
+    margin-left: -0.52em;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: 1px solid #fff;
+    background: #40ca9f;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: '';
+}
+
+.clearfix:after {
+    clear: both;
+}
+.kedu > div  {
+    float: left;
+    width: 10%;
+    text-align: right;
+    margin-bottom: 5px;
+    font-size: 6px;
+}
+

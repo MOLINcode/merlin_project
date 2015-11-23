@@ -1,0 +1,146 @@
+/* CSS Document */
+#user_center .center-bg {
+    background-image: url("/resource/img/admin/user-top.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 142px;
+    padding-top: 20px;
+}
+#user_center .center-bg .close span {
+    color: red;
+    font-size: 54px;
+}
+#user_center .modal-header img {
+    height: 80px;
+    width: 80px;
+}
+.color-white {
+    color: #fff;
+}
+.nav-tediums {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+.nav-tediums > li {
+    float: left;
+    margin-bottom: -1px;
+    margin-right: 20px;
+}
+.nav-tediums > li.active > a, .nav-tediums > li.active > a:hover,.active > a:focus {
+    border-color: #40ca9f;
+}
+.nav-tediums > li > a {
+    border-bottom: 3px solid transparent;
+    color: #444;
+}
+.form-control-input {
+    background: transparent none repeat scroll 0 0;
+    border: 0 none;
+    border-radius: 0;
+    box-shadow: none;
+    height: 34px;
+    line-height: 34px;
+    width: 400px;
+}
+.new_email_set_message {
+    background-color: #dbefce;
+    color: #4a7d28;
+    display: block;
+    font-size: 13px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px 0 15px;
+    white-space: nowrap;
+    width: 350px;
+}
+.new_email_set_warning {
+    background-color: #ffd4d4;
+    color: #c00000;
+    display: block;
+    font-size: 13px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px 0 15px;
+    white-space: nowrap;
+    width: 350px;
+}
+.form-base .controls-check {
+    float: left;
+    margin: 0 10px 0 20px;
+    width: 120px;
+}
+.form-base .form-group .check-right {
+    background: transparent url("/resource/img/admin/check_right.png") no-repeat scroll center center;
+    display: inline;
+    float: left;
+    height: 34px;
+    margin: 0;
+    width: 13px;
+}
+.check_code_warning {
+    color: #f00;
+}
+.user-check-s-img {
+    background: transparent url("/resource/img/admin/user_check_success.png") no-repeat scroll center center;
+    height: 46px;
+    margin: 0 auto;
+    padding: 0;
+    width: 400px;
+}
+.user-check-text-s {
+    margin: 0 auto;
+    padding: 0;
+    width: 410px;
+}
+.user-check-text-s > .set-email-title {
+    font-size: 18px;
+    font-weight: bold;
+    height: 60px;
+    line-height: 50px;
+    margin: -20px;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.user-check-text-s > .p {
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.user-check-text-s > .p span {
+    font-size: 15px;
+}
+.user-check-text-s > .p span {
+    font-size: 15px;
+}
+.text-bold {
+    font-weight: bold;
+}
+.user-check-f-img {
+    background: rgba(0, 0, 0, 0) url("/resource/img/admin/user_check_fail.png") no-repeat scroll center center;
+    height: 46px;
+    margin: 0 auto;
+    padding: 0;
+    width: 400px;
+}
+.user-check-text {
+    margin: 0 auto;
+    padding-left: 50px;
+    width: 400px;
+}
+.user-check-text > .title {
+    color: #ff3f3f;
+    font-size: 18px;
+    font-weight: bold;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    padding-bottom: 10px;
+    text-align: left;
+}
+.user-check-text > .p {
+    line-height: 30px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}

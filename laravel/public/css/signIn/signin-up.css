@@ -1,0 +1,166 @@
+
+/*================================================== signup注册页面 =========================*/
+.signup  {
+	position: relative;
+	top: 60px;
+	text-align: center;
+	height: 100%;
+}
+
+.signup p  {
+	line-height: 40px;
+	text-align: left;
+	padding-left: 20px;
+	border-bottom: 1px dashed #ebebeb;
+}
+.signup form  {
+	/*padding: 30px 30% 120px 30%;*/
+	padding:30px 100px 30px 250px;
+	min-width: 350px;
+	height: 100%;
+	overflow-y: auto;
+}
+.form-control{
+	width:55%;
+}
+
+.cloud_error{
+	display:block;
+	float:left;
+	color:red;
+}
+
+.w100{
+	width:55%;
+	position:relative;
+	left:-130px;
+}
+.col-sm-8  {
+	padding: 0;
+}
+.signup > div  {
+	padding: 10px 30% 10px 30%;
+}
+.form-group a  {
+	display: none;
+}
+.form-group > div a  {
+	display: block;
+}
+.has-error .control-label  {
+	color: #f00;
+}
+.has-error .form-control  {
+	border-color: #f00;
+}
+.form-group.has-error a {
+	display: block;
+	color: #f00;
+	line-height: 34px;
+}
+.form-group.has-error a:hover,
+.form-group.has-error a:focus {
+	color: #f00;
+}
+
+/*============================================== signup注册确认页面 =========================*/
+.signup.sure img  {
+	margin-top: 90px;
+}
+.signup.sure p {
+	text-align: center;
+	line-height: 30px;
+	border: none;
+}
+.succ  {
+	margin-top: 10px;
+	color: #40ca9f;
+}
+.signup.sure button  {
+	margin-top: 10px;
+}
+.time span  {
+	color: #40ca9f;
+	font-size: 22px;
+}
+/*============================================== signup账号激活页面 =========================*/
+.accout-active  {
+	z-index: 2;
+	margin-left: 20%;
+	text-align: left;
+	margin-top: 100px;
+}
+.accout-active p  {
+	line-height: 40px;
+}
+.accout-active p:first-child  {
+	position: fixed;
+	top: 0;
+	left: 0;
+	line-height: 60px;
+	color: #fff;
+	font-size: 15px;
+	z-index: 1999;
+	width: 100%;
+	text-align: center;
+}
+.accout-active .password  {
+	margin-top: 20px;
+}
+.password span  {
+	color: #f00;
+}
+.accout-active a  {
+	color: #26a3de;
+}
+@media screen and (max-width: 675px)  {
+	.accout-active p:first-child  {
+		position: static;		
+		color: inherit;
+		font-size: 15px;
+	}
+}
+/*============================================== signin登陆页面 =========================*/
+.signin  {
+	height: 100%;
+	background: #40ca9f url(/resource/img/signin_bg.png) no-repeat 50% 50%;
+	background-size: cover;
+	background-position: bottom;
+	padding-top: 50px;
+}
+.signin .form-horizontal  {
+	width: 425px;
+	margin: 50px auto;
+	background-color: #fff;
+	padding: 10px 25px 25px;
+	border-radius: 10px;
+}
+.form-horizontal .form-group.signin-set {
+	margin-top: 0;
+}
+.form-horizontal .checkbox  {
+	padding-top: 0;
+	min-height: inherit;
+}
+.signin-set .fr a  {
+	display: block;
+	cursor: pointer;
+}
+.signin-set .fr a:hover,
+.signin-set .fr a:focus  {
+	color: inherit;
+}  
+.signin-set .fr  {
+	color: #40ca9f;
+}
+.sign{
+	width:100%;
+}
+.load{
+	width:100%;
+	position:relative;
+	left:1px;
+}
+@media screen and (max-width: 767px)  {
+	
+}
