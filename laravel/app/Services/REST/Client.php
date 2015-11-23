@@ -17,7 +17,7 @@
  *        $body = $this->c->getBody();
  *        var_dump($body);
  */
-namespace app\Services\REST;
+namespace App\Services\REST;
 class REST_Client extends BaseService
 {
     const METHOD_GET    = 'GET';

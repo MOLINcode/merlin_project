@@ -22,7 +22,7 @@
  *        $this->modified = REST_Modified::instance();
  *        $this->modified->ckModified();
  */
-namespace app\Services\REST;
+namespace App\Services\REST;
 class REST_ModifiedValid
 {
 

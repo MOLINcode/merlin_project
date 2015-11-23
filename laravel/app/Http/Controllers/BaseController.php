@@ -3,14 +3,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Services\Tool\CacheService;
 use App\Services\Tool\RESTService;
-use App\Http\Requests;
 /**
  * Class BaseController
  */
 class BaseController extends Controller
 {
 
-    protected $params = NULL;
+//    protected $params = NULL;
 
     protected $layout = 'layouts.master';
 
@@ -35,11 +34,11 @@ class BaseController extends Controller
     {
         $this->rest   = RESTService::instance();
         $this->cache  = CacheService::instance();
-        $this->params = Input::all();
+//        $this->params = Request::all();
 
     }
 
-    protected function getParam($sParamKey, $default = NULL)
+   /* protected function getParam($sParamKey, $default = NULL)
     {
         if (array_key_exists($sParamKey, $this->params)) {
             $result = $this->params[$sParamKey];
@@ -47,7 +46,7 @@ class BaseController extends Controller
             $result = Route::input($sParamKey);
         }
         return !is_null($result) ? $result : $default;
-    }
+    }*/
 
     /**
      * 获取php://input的原始数据流

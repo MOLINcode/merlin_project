@@ -3,7 +3,7 @@
  * @author ciogao@gmail.com
  * Date: 14-7-21 下午7:03
  */
-namespace app\Constants;
+namespace App\Constants;
 class CacheKeyEnum
 {
     //用户信息cache标签

@@ -3,7 +3,7 @@
  * 参数验证
  * @author Neeke.Gao
  */
-namespace app\Services\REST;
+namespace App\Services\REST;
 class REST_ParamsValid extends BaseService
 {
     private $haveValidedMustParams = FALSE;

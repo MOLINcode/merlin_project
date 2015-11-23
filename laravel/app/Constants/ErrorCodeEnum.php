@@ -3,7 +3,7 @@
  * @author ciogao@gmail.com
  * Date: 14-5-9 下午3:22
  */
-namespace app\Constants;
+namespace App\Constants;
 class ErrorCodeEnum
 {
     /**
@@ -119,7 +119,7 @@ class ErrorCodeEnum
 
     public static function getCodes()
     {
-//        return self::$status_msgs;
-        return Lang::get('constants.errorCodeEnum');
+        return self::$status_msgs;
+//        return Lang::get('constants.errorCodeEnum');
     }
 }

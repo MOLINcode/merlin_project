@@ -19,7 +19,7 @@ use Symfony\Component\Security\Acl\Exception\Exception;
  *        $this->quantity->config(30,30);
  *        $this->quantity->check('appkey');
  */
-namespace app\Services\REST;
+namespace App\Services\REST;
 class REST_QuantityValid extends BaseService
 {
 

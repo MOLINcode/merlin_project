@@ -3,6 +3,8 @@
  *
  * Class UserService
  */
+namespace App\Services;
+use App\Services\BaseService;
 class UserService extends BaseService
 {
     private static $self = NULL;
@@ -30,10 +32,7 @@ class UserService extends BaseService
      */
     private $oSubUserInfo = NULL;
 
-    /**
-     * @var null|User_UserAccountModel
-     */
-    private $mUserAccountModel = NULL;
+
 
     /**
      * @var null|User_UserInfoModel
@@ -53,7 +52,6 @@ class UserService extends BaseService
     {
         $this->mPersonalSettingModel = new User_UserPersonalSettingModel();
         $this->mUserInfoModel        = new User_UserInfoModel();
-        $this->mUserAccountModel     = new User_UserAccountModel();
     }
 
     /**

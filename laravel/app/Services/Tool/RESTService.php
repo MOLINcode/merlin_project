@@ -21,8 +21,8 @@
  *
  */
 namespace App\Services\Tool;
-use app\Constants\ErrorCodeEnum;
-use app\Constants\ProfessionErrorCodeEnum;
+use App\Constants\ErrorCodeEnum;
+use App\Constants\ProfessionErrorCodeEnum;
 class RESTService
 {
     private $format = 'JSON';

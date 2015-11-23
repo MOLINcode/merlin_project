@@ -6,8 +6,8 @@
  * Date: 15-11-21
  * Time: 下午4:16
  */
-namespace app\Constants;
-use app\Constants\ErrorCodeEnum;
+namespace App\Constants;
+use App\Constants\ErrorCodeEnum;
 class ProfessionErrorCodeEnum
 {
     const ERROR_ACCOUNT_UNAVAILABLE = 1400; //账号不可用
@@ -105,7 +105,7 @@ class ProfessionErrorCodeEnum
 
     public static function getErrorMessage()
     {
-//        return self::$error_message;
-        return Lang::get('constants.professionErrorCodeEnum');
+        return self::$error_message;
+//        return Lang::get('constants.professionErrorCodeEnum');
     }
 }

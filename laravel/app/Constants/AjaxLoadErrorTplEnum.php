@@ -5,7 +5,7 @@
  * Date: 14-7-31
  * Time: 下午11:57
  */
-namespace app\Constants;
+namespace App\Constants;
 class AjaxLoadErrorTplEnum {
     const REPORT_ERR = 1;
     const NETWORK_REPORT_ERR1 = 2;

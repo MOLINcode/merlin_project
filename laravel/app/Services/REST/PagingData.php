@@ -9,7 +9,7 @@
  *    $this->mkData->config(30, 'brief_id');
  *    $this->data = $this->mkData->make($data);
  */
-namespace app\Services\REST;
+namespace App\Services\REST;
 class REST_PagingData extends BaseService
 {
 
