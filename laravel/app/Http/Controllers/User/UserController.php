@@ -6,82 +6,41 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\BaseController;
+use App\Services\User\UserService;
+use App\Constants\ProfessionErrorCodeEnum;
 
 class UserController extends BaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    //注册页
+    public function registerIndex()
     {
        return view('user.register');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    //处理注册
+    public function disposeRegister(){
+
+        $aRole = array(
+            'user_name'  => 'required',
+            'user_email' => 'required|email',
+        );
+        $aCode = array(
+            "user_name" =>array(
+                ProfessionErrorCodeEnum::ERROR_USER_NAME_NULL
+            ),
+            "user_email"=>array(
+                ProfessionErrorCodeEnum::ERROR_USER_EMAIL_NULL,
+                ProfessionErrorCodeEnum::ERROR_EMAIL_FAILURE,
+                ),
+        );
+        $this->validatorError($aRole, $aCode);
+        $this->rest->success('注册成功');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //登录页
+    public function loginIndex()
     {
-        //
+        return view('user.login');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

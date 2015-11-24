@@ -145,6 +145,7 @@ class RESTService
      */
     public function error($msg = NULL, $status = ErrorCodeEnum::STATUS_ERROR, $data = array())
     {
+
         self::baseResponse($data, $status, $msg);
     }
 
@@ -174,6 +175,7 @@ class RESTService
             : $msg
         );
         unset($data);
+
         self::mkheader();
         self::mkdata();
     }

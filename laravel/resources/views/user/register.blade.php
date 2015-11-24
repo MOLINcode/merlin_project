@@ -36,36 +36,21 @@
     <p>{{Lang::get('system.registration')}}</p>
     <form action="/disposeRegister" method="post" id="registerId" class="form-horizontal">
     <div class="form-group">
-        <label for="" class="col-sm-3 control-label">{{Lang::get('system.company_name')}}</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control" name="company_name" placeholder="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="" class="col-sm-3 control-label">{{Lang::get('system.company_url')}}</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control" name="company_url" placeholder="">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="" class="col-sm-3 control-label">{{Lang::get('system.contact_person')}}</label>
+        <label for="" class="col-sm-3 control-label">账号名称</label>
         <div class="col-sm-7">
             <input type="text" class="form-control" name="user_name" placeholder="">
         </div>
     </div>
     <div class="form-group">
-        <label for="" class="col-sm-3 control-label">{{Lang::get('system.contact_email')}}</label>
+        <label for="" class="col-sm-3 control-label">账号邮箱</label>
         <div class="col-sm-7">
             <input type="text" class="form-control" name="user_email" placeholder="">
         </div>
-        <a class="col-sm-2 text-left" style="display: none">
-            X
-        </a>
     </div>
     <div class="form-group">
-        <label for="" class="col-sm-3 control-label">{{Lang::get('system.contact_mobile')}}</label>
+        <label for="" class="col-sm-3 control-label">推荐账号</label>
         <div class="col-sm-7">
-            <input type="text" class="form-control" name="user_mobile" placeholder="">
+            <input type="text" class="form-control" name="relationship_user" placeholder="">
         </div>
     </div>
     <div class="form-group">

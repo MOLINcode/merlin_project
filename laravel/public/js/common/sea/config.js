@@ -52,38 +52,9 @@ seajs.config({
         user_signin:'user/user_signin.js',
         group:'user/group.js',
         user_center:'user/ucenter.js',
-
-        //测试任务
-        testCaseList:'testCase/list.js',
-        testTaskInfo:'testCase/process/testTaskInfo.js',
-
-
-        //测试模板
-        taskIndex:'testTpl/index.js',
-        appointStart:'testTpl/appointStart.js',
-        testTplCreate:'testTpl/create.js',
-        testOverview:'testTpl/testOverview.js',
-
-
-        //测试任务过程
-        processReserving:'testCase/process/processReserving.js',
-        processTesting:'testCase/process/processTesting.js',
-        processFinished:'testCase/process/processFinished.js',
-
-
-        //数据仓库
-        dataStoreList:'dataStore/list.js',
-        dataStoreCreate:'dataStore/create.js',
-
-        //测试场景
-        testSceneList:'testScene/list.js',
-        testSceneCreate:'testScene/create.js',
-
         //表单异步文件提交
         ajaxFormSubmit:'common/jquery/jquery.form.js',
 
-        //后台 admin
-        admin_register:'admin/register.js'
     },
     // 预加载项
     preload: [

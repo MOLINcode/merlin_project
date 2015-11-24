@@ -10,10 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
+function IncludeRouteGroup($routeFileName){
+    include app_path().'/RouteGroup/'.$routeFileName;
+}
 Route::get('/', function () {
     return view('welcome');
 });
 
 //注册
-Route::get('/register','User\UserController@index');
+IncludeRouteGroup('CommonRoute.php');

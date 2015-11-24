@@ -1,4 +1,5 @@
 <?php
+use app\ViewSpall\ResourceSpall;
 $version = ResourceSpall::getResourceVersion();
 ?>
 @section('common_meta')
@@ -13,7 +14,9 @@ $version = ResourceSpall::getResourceVersion();
 @section('common_css')
 
 <link rel="icon" href="/favicon.ico">
-<?php ResourceSpall::includeCSS('commonCSS');?>
+<?php
+ResourceSpall::includeCSS('commonCSS');
+?>
 
 @stop
 
