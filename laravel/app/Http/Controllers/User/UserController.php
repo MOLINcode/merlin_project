@@ -19,7 +19,6 @@ class UserController extends BaseController
 
     //处理注册
     public function disposeRegister(){
-
         $aRole = array(
             'user_name'  => 'required',
             'user_email' => 'required|email',
@@ -33,9 +32,19 @@ class UserController extends BaseController
                 ProfessionErrorCodeEnum::ERROR_EMAIL_FAILURE,
                 ),
         );
+        UserService::instance()->sendMail($this->params['user_email']);
         $this->validatorError($aRole, $aCode);
-        $this->rest->success('注册成功');
+        $this->rest->success('','','Success');
     }
+
+    //注册成功
+    public function registerSuccess(){
+        $email = 'http://mail.'.explode('@',$this->getParam('mail'))[1];
+        return  view('user.registerSuccess',array(
+            'email'=>$email,
+        ));
+    }
+
 
     //登录页
     public function loginIndex()

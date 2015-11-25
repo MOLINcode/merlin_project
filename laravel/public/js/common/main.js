@@ -51,11 +51,8 @@ define(function (require, exports, module) {
 					var status = {
 						error:'danger'
 					};
-
 					var cls = $.isEmptyObject(status[opt.status]) ? opt.status : status[opt.status];
-
 					var alertHtml = '<div class="modal-alert"><div class="alert alert-' + cls + '">'  + opt.msg + '</div></div>';
-
 					$(alertHtml).appendTo($('body')).fadeIn().delay(opt.speed).fadeOut(function () {
 						$(this).remove()
 					});

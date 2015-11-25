@@ -7,4 +7,5 @@
  */
 Route::get('/register','User\UserController@registerIndex');
 Route::post('/disposeRegister','User\UserController@disposeRegister');
+Route::get('/registerSuccess','User\UserController@registerSuccess');
 Route::get('/login','User\UserController@loginIndex');

@@ -283,43 +283,43 @@ select.form-control:focus {
 }
 
 .sidebar .test {
-    background: url(/resource/img/icon/icon_test.png) no-repeat 30px center;
+    background: url(/img/icon/icon_test.png) no-repeat 30px center;
 }
 
 .sidebar .active .test,
 .sidebar .test:hover,
 .sidebar .test:focus {
-    background: #d6faf0 url(/resource/img/icon/icon_test1.png) no-repeat 30px center;
+    background: #d6faf0 url(/img/icon/icon_test1.png) no-repeat 30px center;
 }
 
 .sidebar .scene {
-    background: url(/resource/img/icon/icon_scene.png) no-repeat 30px center;
+    background: url(/img/icon/icon_scene.png) no-repeat 30px center;
 }
 
 .sidebar .active .scene,
 .sidebar .scene:hover,
 .sidebar .scene:focus {
-    background: #d6faf0 url(/resource/img/icon/icon_scene1.png) no-repeat 30px center;
+    background: #d6faf0 url(/img/icon/icon_scene1.png) no-repeat 30px center;
 }
 
 .sidebar .storehouse {
-    background: url(/resource/img/icon/icon_storehouse.png) no-repeat 30px center;
+    background: url(/img/icon/icon_storehouse.png) no-repeat 30px center;
 }
 
 .sidebar .active .storehouse,
 .sidebar .storehouse:hover,
 .sidebar .storehouse:focus {
-    background: #d6faf0 url(/resource/img/icon/icon_storehouse1.png) no-repeat 30px center;
+    background: #d6faf0 url(/img/icon/icon_storehouse1.png) no-repeat 30px center;
 }
 
 .sidebar .sys-set {
-    background: url(/resource/img/icon/icon_sys_set.png) no-repeat 30px center;
+    background: url(/img/icon/icon_sys_set.png) no-repeat 30px center;
 }
 
 .sidebar .active .sys-set,
 .sidebar .sys-set:hover,
 .sidebar .sys-set:focus {
-    background: #d6faf0 url(/resource/img/icon/icon_sys_set1.png) no-repeat 30px center;
+    background: #d6faf0 url(/img/icon/icon_sys_set1.png) no-repeat 30px center;
 }
 
 .sidebar table td {
@@ -420,70 +420,70 @@ ol {
 
 .breadcrumb.test li:first-child a {
     padding-left: 30px;
-    background: url(/resource/img/icon/icon_sml_test.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_test.png) no-repeat 10px center;
 }
 
 .breadcrumb.test li:first-child a:visited {
-    background: url(/resource/img/icon/icon_sml_test.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_test.png) no-repeat 10px center;
 }
 
 .breadcrumb.test li:first-child a:hover {
-    background: url(/resource/img/icon/icon_sml_test1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_test1.png) no-repeat 10px center;
 }
 
 .breadcrumb.test li:first-child a:active {
-    background: url(/resource/img/icon/icon_sml_test1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_test1.png) no-repeat 10px center;
 }
 
 .breadcrumb.scenario li:first-child a {
     padding-left: 30px;
-    background: url(/resource/img/icon/icon_sml_scenario.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_scenario.png) no-repeat 10px center;
 }
 
 .breadcrumb.scenario li:first-child a:visited {
-    background: url(/resource/img/icon/icon_sml_scenario.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_scenario.png) no-repeat 10px center;
 }
 
 .breadcrumb.scenario li:first-child a:hover {
-    background: url(/resource/img/icon/icon_sml_scenario1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_scenario1.png) no-repeat 10px center;
 }
 
 .breadcrumb.scenario li:first-child a:active {
-    background: url(/resource/img/icon/icon_sml_scenario1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_scenario1.png) no-repeat 10px center;
 }
 
 .breadcrumb.data-store li:first-child a {
     padding-left: 30px;
-    background: url(/resource/img/icon/icon_sml_data_store.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_data_store.png) no-repeat 10px center;
 }
 
 .breadcrumb.data-store li:first-child a:visited {
-    background: url(/resource/img/icon/icon_sml_data_store.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_data_store.png) no-repeat 10px center;
 }
 
 .breadcrumb.data-store li:first-child a:hover {
-    background: url(/resource/img/icon/icon_sml_data_store1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_data_store1.png) no-repeat 10px center;
 }
 
 .breadcrumb.data-store li:first-child a:active {
-    background: url(/resource/img/icon/icon_sml_data_store1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_data_store1.png) no-repeat 10px center;
 }
 
 .breadcrumb.setting li:first-child a {
     padding-left: 30px;
-    background: url(/resource/img/icon/icon_sml_set.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_set.png) no-repeat 10px center;
 }
 
 .breadcrumb.setting li:first-child a:visited {
-    background: url(/resource/img/icon/icon_sml_set.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_set.png) no-repeat 10px center;
 }
 
 .breadcrumb.setting li:first-child a:hover {
-    background: url(/resource/img/icon/icon_sml_set1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_set1.png) no-repeat 10px center;
 }
 
 .breadcrumb.setting li:first-child a:active {
-    background: url(/resource/img/icon/icon_sml_set1.png) no-repeat 10px center;
+    background: url(/img/icon/icon_sml_set1.png) no-repeat 10px center;
 }
 
 
@@ -604,11 +604,11 @@ ol {
 }
 
 .ui-state-default .ui-icon {
-    background-image: url(/resource/img/common/ui-icons_888888_256x240.png);
+    background-image: url(/img/common/ui-icons_888888_256x240.png);
 }
 
 .ui-state-active .ui-icon {
-    background-image: url(/resource/img/common/ui-icons_454545_256x240.png);
+    background-image: url(/img/common/ui-icons_454545_256x240.png);
 }
 
 
@@ -842,7 +842,7 @@ input[type="radio"] {
     padding-left: 20px;
     margin-left: 20px;
     cursor: pointer;
-    background: url(/resource/img/common/radio.png) no-repeat left bottom;
+    background: url(/img/common/radio.png) no-repeat left bottom;
     height: 18px;
 }
 
@@ -988,7 +988,7 @@ label.checked {
 
 /*======================================================  loading效果=========================*/
 .loading {
-    background: url(/resource/img/loading.gif) center center no-repeat;
+    background: url(/img/loading.gif) center center no-repeat;
 }
 /*============================ 模态警告框   =============================*/
 .modal-alert{
@@ -1021,7 +1021,7 @@ label.checked {
 }
 /**图表无数据*/
 .nodata {
-    background: url(/resource/img/no_data.png) center center no-repeat;
+    background: url(/img/no_data.png) center center no-repeat;
 }
 
 
@@ -1145,22 +1145,22 @@ label.checked {
     cursor: pointer;
 }
 .icon_start  {
-    background: url(/resource/img/start.png) no-repeat center center;
+    background: url(/img/start.png) no-repeat center center;
 }
 .icon_stop  {
-    background: url(/resource/img/stop.png) no-repeat center center;
+    background: url(/img/stop.png) no-repeat center center;
 }
 .icon_detail  {
-    background: url(/resource/img/icon_detail.png) no-repeat center center;
+    background: url(/img/icon_detail.png) no-repeat center center;
 }
 .icon_cancel  {
-    background: url(/resource/img/icon_cancle.png) no-repeat center center;
+    background: url(/img/icon_cancle.png) no-repeat center center;
 }
 .icon_order  {
-    background: url(/resource/img/icon_order.png) no-repeat center center;
+    background: url(/img/icon_order.png) no-repeat center center;
 }
 .icon_del  {
-    background: url(/resource/img/del.png) no-repeat center center;
+    background: url(/img/del.png) no-repeat center center;
 }
 
 .taskTplTr .glyphicon{

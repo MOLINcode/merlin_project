@@ -36,14 +36,11 @@
                 <img src="{{asset('/img/logo.png')}}"></a>
         </div>
     </div>
-    {{-- */$mail = strstr($_GET['mail'],'@');
-        $mail = ltrim($mail,'@');
-        $url = "http://mail.".$mail; /*--}}
     <div class="signup sure">
-        <img src="/resource/img//common/smile.png">
+        <img src="{{asset('/img/common/smile.png')}}">
         <p class="succ">{{Lang::get('system.congratulation_info')}}</p>
         <p>{{Lang::get('system.tips1')}}<br>{{Lang::get('system.tips2')}}</p>
-        <a class="btn btn-noicon btn-green" href="{{$url}}">{{Lang::get('system.tips3')}}</a>
+        <a class="btn btn-noicon btn-green" href="{{$email}}" target="_blank">{{Lang::get('system.tips3')}}</a>
     </div>
 
 </body>

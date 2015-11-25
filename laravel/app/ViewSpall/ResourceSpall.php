@@ -5,6 +5,8 @@ namespace app\ViewSpall;
  * Date: 14-5-14 下午3:49
  */
 
+use Illuminate\Support\Facades\Config;
+
 class ResourceSpall
 {
     static public function getCSS($key){
@@ -40,7 +42,6 @@ class ResourceSpall
                 'common/bootstrap/bootstrap-switch.min.js',
                 'common/bootstrap/date/bootstrap-datetimepicker.js',
                 'common/bootstrap/date/bootstrap-datetimepicker.zh-CN.js',
-                "common/Lang/".(isset(UserService::getUserCache()->language) ? LangEnum::$lang[UserService::getUserCache()->language] : 'zh_cn').".js",
                 'config.js',
             ),
             'AdminCommonJS' => array(
@@ -59,6 +60,13 @@ class ResourceSpall
                 'ueditor/ueditor.config.js',
                 'ueditor/ueditor.all.min.js'
             ),
+
+            //注册页面的js
+            'register' => array(
+                'common/sea/sea.js',
+                'common/sea/config.js',
+                'common/jquery/jquery.min.js',
+           ),
 
 
         );
@@ -94,7 +102,8 @@ class ResourceSpall
     static public function includeJS($key){
         $cssArr = self::getJS($key);
         foreach($cssArr as $v){
-            echo "<script type='text/javascript' src='/resource/js/".$v."?v=".ResourceSpall::getResourceVersion()."'></script>\n";
+            echo "<script type='text/javascript' src='/js/".$v."?v=".ResourceSpall::getResourceVersion()."'></script>\n";
+//            echo "<script type='text/javascript' src='/resource/js/".$v."'></script>\n";
         }
     }
 

@@ -4,7 +4,8 @@
 var version = '20150508';
 seajs.config({
     //基础路径
-    base: '/resource/js/',
+    base: '/js/',
+    base: '/js/',
     // 别名配置
     alias: {
         //第三方common公共的js

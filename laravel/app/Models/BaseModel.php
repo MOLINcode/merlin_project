@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Constants\SQLKeyReToFunction;
+use DB;
 class BaseModel extends Model
 {
 

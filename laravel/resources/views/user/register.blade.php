@@ -23,6 +23,9 @@
         }
     </script>
     <![endif]-->
+    <?php
+    use App\ViewSpall\ResourceSpall;
+    ResourceSpall::includeJS('register'); ?>
 </head>
 <body>
 <div class="navbar navbar-fixed-top web-navbar-top">
@@ -34,7 +37,7 @@
 </div>
 <div class="signup">
     <p>{{Lang::get('system.registration')}}</p>
-    <form action="/disposeRegister" method="post" id="registerId" class="form-horizontal">
+    <form id="registerId" class="form-horizontal" onsubmit="return false;">
     <div class="form-group">
         <label for="" class="col-sm-3 control-label">账号名称</label>
         <div class="col-sm-7">
@@ -56,7 +59,7 @@
     <div class="form-group">
         <label for="" class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-            <button class="btn btn-noicon btn-green w100" type="submit">{{Lang::get('system.commit_info')}}</button>
+            <button class="btn btn-noicon btn-green w100 registerDispose">{{Lang::get('system.commit_info')}}</button>
         </div>
     </div>
     </form>
