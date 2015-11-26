@@ -14,6 +14,10 @@
  */
 namespace App\Services\Tool;
 use App\Services\BaseService;
+use App\Services\Tool\MQRedisService;
+use App\Models\VO\VO_Bound;
+use App\Models\VO\Request\VO_Request_SendEmail;
+use Mail;
 class MailService extends BaseService
 {
     /**
@@ -60,6 +64,7 @@ class MailService extends BaseService
     public function send($sView, $aDataForView, $callback)
     {
         return Mail::send($sView, $aDataForView, $callback);
+
     }
 
     /**
@@ -74,7 +79,6 @@ class MailService extends BaseService
     public function sendByMQ($sView, $aDataForView, $sMailToEmail, $sMailToName, $sSubject)
     {
         self::processMQService();
-
         $rawParams = array(
             'sView'        => $sView,
             'aDataForView' => $aDataForView,
@@ -99,16 +103,16 @@ class MailService extends BaseService
 
         while (TRUE) {
             $result = self::_getMailPop();
-
+            var_dump($result);
             if (!$result) return TRUE;
 
             self::send($result->sView, $result->aDataForView, function ($m) use ($result) {
                 $m->to($result->sMailToEmail, $result->sMailToName)->subject($result->sSubject);
-                $array = array(
-                    'data'=>$result->sMailToEmail
-                );
-                LogService::instance()->setLog('debug','发送邮件:',$array);
             });
+            $array = array(
+                'data'=>$result->sMailToEmail
+            );
+            LogService::instance()->setLog('debug','发送邮件:',$array);
         }
 
         return TRUE;

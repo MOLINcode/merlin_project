@@ -6,8 +6,11 @@
 namespace App\Services\User;
 use App\Services\BaseService;
 use App\Models\User\UserRegisterModel;
-use Mail;
 use App\Services\Tool\MailService;
+use App\Models\VO\VO_Bound;
+use App\Models\VO\Request\VO_Request_DimRegister;
+use App\Models\BaseModel;
+
 class UserService extends BaseService
 {
     private static $self = NULL;
@@ -30,35 +33,6 @@ class UserService extends BaseService
         $this->mRegister = new UserRegisterModel();
     }
 
-    //审核注册
-    public function registerCheck($params){
-        BaseModel::transStart();
-        //创建用户注册表数据
-        if (!$register_id =$this->createRegister($params)) {
-            BaseModel::transRollBack();
-            throw new Exception('注册用户失败！');
-        }
-
-        UserRegisterService::instance()->setRequestRegisterInfoParams(array('register_id'=>$register_id));
-        $registerInfo = UserRegisterService::instance()->getRegisterInfo();
-
-
-        $user_pass = self::makePassword(6);
-
-
-        BaseModel::transCommit();
-        //发送邮件
-        $token = md5(time() . $createUserReturnInfo['user_id'] . $registerInfo->user_email);
-        MailService::instance()->sendByMQ('emails.user.user_activate', array(
-            'user_name' => $registerInfo->user_name,
-            'password'  => $user_pass,
-            'token'     => $token,
-        ), $registerInfo->user_email, $registerInfo->user_name, 'yacebao.com');
-//        //生成cache
-//        CacheService::instance()->set($token, $registerInfo->user_email, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
-        return TRUE;
-    }
-
     /**
      * 生成随机密码
      * @param $length
@@ -76,9 +50,67 @@ class UserService extends BaseService
     }
 
     //创建注册信息
-    public function createRegister($info){
-
+    public function createRegister($params){
+        $aData = $this -> mRegister->mkInfoForInsert($params);
+        return  $this-> mRegister ->insert($aData);
     }
+
+    /**
+     * @var VO_Request_DimRegister
+     */
+    public $oRegisterUserInfo = NULL;
+
+    public function setRequestRegisterInfoParams($params)
+    {
+        $this->oRegisterUserInfo = VO_Bound::Bound($params, NEW VO_Request_DimRegister());
+
+        return $this->oRegisterUserInfo;
+    }
+
+    /**
+     * @return VO_Response_DimRegister
+     */
+    public function getRegisterInfo()
+    {
+        $register_id = $this->oRegisterUserInfo->register_id;
+        if (!$register_id) return NULL;
+
+        return $this->mRegister->fetchRow($register_id);
+    }
+
+    //审核注册
+    public function registerCheck($params){
+//        dd($params);
+        BaseModel::transStart();
+        //创建用户注册表数据
+        $oData = $this->setRequestRegisterInfoParams($params);
+        if (!$register_id =$this->createRegister($oData)) {
+            BaseModel::transRollBack();
+            throw new Exception('注册用户失败！');
+        }
+
+        $this->setRequestRegisterInfoParams(array('register_id'=>$register_id));
+        $registerInfo = $this->getRegisterInfo();
+
+
+        $user_pass = self::makePassword(6);
+
+
+        BaseModel::transCommit();
+        //发送邮件
+        $token = md5(time().$registerInfo->user_email);
+        MailService::instance()->sendByMQ('emails.user.user_activate', array(
+            'user_name' => $registerInfo->user_name,
+            'password'  => $user_pass,
+            'token'     => $token,
+        ), $registerInfo->user_email, $registerInfo->user_name, 'merlin-feng.com');
+//        //生成cache
+//        CacheService::instance()->set($token, $registerInfo->user_email, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
+        return TRUE;
+    }
+
+
+
 
 
 

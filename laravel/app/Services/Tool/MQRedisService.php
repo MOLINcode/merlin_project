@@ -5,6 +5,8 @@
  */
 namespace App\Services\Tool;
 use App\Services\BaseService;
+use Config;
+use Redis;
 class MQRedisService extends BaseService
 {
 

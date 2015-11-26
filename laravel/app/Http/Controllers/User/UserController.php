@@ -32,8 +32,8 @@ class UserController extends BaseController
                 ProfessionErrorCodeEnum::ERROR_EMAIL_FAILURE,
                 ),
         );
-        UserService::instance()->sendMail($this->params['user_email']);
         $this->validatorError($aRole, $aCode);
+        UserService::instance()->registerCheck($this->params);
         $this->rest->success('','','Success');
     }
 

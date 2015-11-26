@@ -7,6 +7,7 @@
  */
 namespace App\Services\Tool;
 use App\Services\BaseService;
+use Log;
 class LogService extends BaseService
 {
 
