@@ -10,6 +10,8 @@ use App\Services\Tool\MailService;
 use App\Models\VO\VO_Bound;
 use App\Models\VO\Request\VO_Request_DimRegister;
 use App\Models\BaseModel;
+use App\Services\Tool\CacheService;
+use App\Constants\CacheExpireEnum;
 
 class UserService extends BaseService
 {
@@ -80,7 +82,6 @@ class UserService extends BaseService
 
     //审核注册
     public function registerCheck($params){
-//        dd($params);
         BaseModel::transStart();
         //创建用户注册表数据
         $oData = $this->setRequestRegisterInfoParams($params);
@@ -104,10 +105,11 @@ class UserService extends BaseService
             'password'  => $user_pass,
             'token'     => $token,
         ), $registerInfo->user_email, $registerInfo->user_name, 'merlin-feng.com');
-//        //生成cache
-//        CacheService::instance()->set($token, $registerInfo->user_email, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
+        //生成cache
+        CacheService::instance()->set($token, $registerInfo->user_email, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
         return TRUE;
     }
+
 
 
 

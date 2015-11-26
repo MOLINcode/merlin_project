@@ -103,16 +103,15 @@ class MailService extends BaseService
 
         while (TRUE) {
             $result = self::_getMailPop();
-            var_dump($result);
             if (!$result) return TRUE;
 
             self::send($result->sView, $result->aDataForView, function ($m) use ($result) {
                 $m->to($result->sMailToEmail, $result->sMailToName)->subject($result->sSubject);
             });
-            $array = array(
+           /* $array = array(
                 'data'=>$result->sMailToEmail
             );
-            LogService::instance()->setLog('debug','发送邮件:',$array);
+            LogService::instance()->setLog('debug','发送邮件:',$array);*/
         }
 
         return TRUE;

@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>压测宝邮件</title>
+    <title>激活邮件</title>
 </head>
 <body>
 <div style="background:#f4f4f4; font-family:'微软雅黑'; padding:30px 0; margin:0;">
@@ -10,7 +10,7 @@
         <table cellpadding="0" cellspacing="0" border="0" align="center" width="900px" style="font-family: '微软雅黑';font-size: 14px;color: #393737;">
             <tbody>
             <tr bgcolor="#3fcaa0" height="100">
-                <td width="170" align="center"><img src="{{Config::get('domain.domainName')}}/resource/img/logo.png"></td>
+                <td width="170" align="center"><img src="{{Config::get('domain.domainName')}}/img/logo.png"></td>
                 <td width="520" style="line-height:30px;" align="center">
                     <span style="font-size:20px; color:#fff;">欢迎使用压测宝，请完成账号激活</span><br/>
                 <td width="180"></td>
@@ -21,7 +21,7 @@
             <tbody>
             <tr height="20px"></tr>
             <tr>
-                <td width="150" align="center" rowspan="2"><img src="{{Config::get('domain.domainName')}}/resource/img/edm/head_mail.png"></td>
+                <td width="150" align="center" rowspan="2"><img src="{{Config::get('domain.domainName')}}/img/edm/head_mail.png"></td>
                 <td width="750" style="line-height:30px;font-family:'微软雅黑';font-size:16px;">
                     Hi，亲爱的<span style="font-weight: bold;">{{ $user_name }}</span>
 

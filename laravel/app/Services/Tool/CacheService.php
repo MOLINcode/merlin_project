@@ -24,7 +24,8 @@
  */
 namespace App\Services\Tool;
 use App\Services\BaseService;
-use Illuminate\Cache;
+use Cache;
+use CacheExpireEnum;
 class CacheService extends BaseService
 {
     private static $self = NULL;
@@ -72,6 +73,7 @@ class CacheService extends BaseService
      */
     public function set($key, $value, $expireTime = 0, $tags = NULL)
     {
+
         $expireTime = self::getiExpiresAt($expireTime);
 
         if (is_null($tags)) {

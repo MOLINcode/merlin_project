@@ -143,11 +143,11 @@ class LogService extends BaseService
         } else {
             $jsondata = $txt;
         }
-        if ($module) {
+       /* if ($module) {
             SeasLog::$level($jsondata, $content, $module);
         } else {
             SeasLog::$level($jsondata, $content);
-        }
+        }*/
     }
 
     public function setLogger($module)

@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 use App\Services\User\UserService;
 use App\Constants\ProfessionErrorCodeEnum;
+use App\Services\Tool\CacheService;
 
 class UserController extends BaseController
 {
@@ -18,7 +19,8 @@ class UserController extends BaseController
     }
 
     //处理注册
-    public function disposeRegister(){
+    public function disposeRegister()
+    {
         $aRole = array(
             'user_name'  => 'required',
             'user_email' => 'required|email',
@@ -33,12 +35,14 @@ class UserController extends BaseController
                 ),
         );
         $this->validatorError($aRole, $aCode);
+        //审核
         UserService::instance()->registerCheck($this->params);
         $this->rest->success('','','Success');
     }
 
     //注册成功
-    public function registerSuccess(){
+    public function registerSuccess()
+    {
         $email = 'http://mail.'.explode('@',$this->getParam('mail'))[1];
         return  view('user.registerSuccess',array(
             'email'=>$email,
@@ -46,10 +50,87 @@ class UserController extends BaseController
     }
 
 
+    /**
+     * 激活用户
+     * @return mixed
+     */
+    public function userActivate()
+    {
+        $token   = $this->params['token'];
+        $err_msg = ProfessionErrorCodeEnum::getErrorMessage();
+
+        if (!$token) {
+            $tips = $err_msg[ProfessionErrorCodeEnum::ERROR_URL_WRONG];
+            return self::showTemplate($tips);
+        }
+
+        if (!CacheService::instance()->exists($token)) {
+            $tips = $err_msg[ProfessionErrorCodeEnum::ERROR_ACTIVATE_EXPIRED];
+            return self::showTemplate($tips);
+        }
+
+//        激活
+        //验证用户
+        $user_email = CacheService::instance()->get($token);
+        dd($user_email);
+        $oUserInfo  = UserService::instance()->getUserInfoByEmail($user_email);
+
+        if (!$oUserInfo) {
+            $tips = $err_msg[ProfessionErrorCodeEnum::ERROR_ACCOUNT_NOT_EXIST];
+            return self::showTemplate($tips, $user_email);
+        }
+
+        try {
+            BaseModel::transStart();
+            if($oUserInfo->user_status == UserEnum::USER_STATUS_AWAITING_ACTIVATE)
+                if (!UserService::instance()->updateUserStatusForActivate($oUserInfo->user_id)) {
+                    throw(new Exception('激活失败'));
+                }
+            $tips = '激活成功';
+            BaseModel::transCommit();
+
+            CacheService::instance()->del($token);
+            $activated = TRUE;
+
+        } catch (Exception $e) {
+            BaseModel::transRollBack();
+            $activated = FALSE;
+            $tips      = '激活失败';
+        }
+
+        return view('user.user_activate')->with(array(
+            'tips'      => $tips,
+            'activated' => $activated,
+            'email'     => $user_email
+        ));
+    }
+
+    /**
+     * 展示用户激活页面
+     * @param        $tips
+     * @param string $email
+     * @param bool $activated
+     * @return mixed
+     */
+    public function showTemplate($tips, $email = '', $activated = FALSE)
+    {
+        return view('user.user_activate')->with(array(
+            'tips'      => $tips,
+            'activated' => $activated,
+            'email'     => $email
+        ));
+    }
+
     //登录页
     public function loginIndex()
     {
         return view('user.login');
+    }
+
+    //处理登录
+    public function disposeLogin()
+    {
+
     }
 
 }
