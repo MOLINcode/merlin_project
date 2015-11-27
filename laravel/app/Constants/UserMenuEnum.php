@@ -1,14 +1,9 @@
 <?php
 
-/**
- * 用户模块权限控制
- * Created by PhpStorm.
- * User: dengchao
- * Date: 14-5-23
- * Time: 下午3:52
- */
 namespace App\Constants;
 use App\Constants\MenuEnum;
+use Lang;
+use Route;
 class UserMenuEnum extends MenuEnum
 {
     /**
@@ -30,7 +25,7 @@ class UserMenuEnum extends MenuEnum
                 self::URL => '/taskTpl/index',
                 self::AUTH => AuthEnum::VIEW_TASK_TPL,
                 self::GROUP => self::GROUP_TASK_TPL,
-                self::COUNT => TaskTplService::instance()->pageCount(),
+
             ),
             array(
                 self::LABEL => Lang::get('common.test_case'),
@@ -38,7 +33,7 @@ class UserMenuEnum extends MenuEnum
                 self::URL => '/testCase/list',
                 self::AUTH => AuthEnum::VIEW_TEST_CASE,
                 self::GROUP => self::GROUP_TEST_CASE,
-                self::COUNT => TestCaseService::instance()->pageCount(null,null),
+
 
             ),
             array(
@@ -47,7 +42,7 @@ class UserMenuEnum extends MenuEnum
                 self::URL => '/testScene/list',
                 self::AUTH => AuthEnum::VIEW_TEST_SCENE,
                 self::GROUP => self::GROUP_TEST_SCENE,
-                self::COUNT => TestSceneService::instance()->getCount(),
+
 
             ),
             array(
@@ -55,8 +50,7 @@ class UserMenuEnum extends MenuEnum
                 self::ICON => 'storehouse',
                 self::URL => '/dataStore/list',
                 self::AUTH => AuthEnum::VIEW_DATA_STORE,
-                self::GROUP => self::GROUP_TEST_DATA,
-                self::COUNT =>  DataWarehouseService::instance()->getCount(),
+                self::GROUP => self::GROUP_TEST_DATA
 
             ),
             array(

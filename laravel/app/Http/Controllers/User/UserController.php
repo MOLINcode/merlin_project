@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Constants\MenuEnum;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -156,6 +158,9 @@ class UserController extends BaseController
         if(!$oUserInfo = UserService::instance()->getUserInfoByEmail($user_email))
         {
             $this->rest->error('该用户不存在');
+        }
+        if($oUserInfo->user_status != UserEnum::REGISTER_STATUS_NORMAL){
+            $this->rest->error(UserEnum::register_status()[$oUserInfo->user_status]);
         }
 
         if($this->params['user_pass'] != $oUserInfo->user_pass)
