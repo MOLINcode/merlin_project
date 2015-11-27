@@ -8,17 +8,23 @@ use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 use App\Services\User\UserService;
 use App\Constants\ProfessionErrorCodeEnum;
+use App\Constants\UserEnum;
 use App\Services\Tool\CacheService;
+use App\Models\BaseModel;
 
 class UserController extends BaseController
 {
-    //注册页
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registerIndex()
     {
        return view('user.register');
     }
 
-    //处理注册
+    /**
+     * @throws \App\Services\User\Exception
+     */
     public function disposeRegister()
     {
         $aRole = array(
@@ -40,7 +46,9 @@ class UserController extends BaseController
         $this->rest->success('','','Success');
     }
 
-    //注册成功
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registerSuccess()
     {
         $email = 'http://mail.'.explode('@',$this->getParam('mail'))[1];
@@ -72,9 +80,7 @@ class UserController extends BaseController
 //        激活
         //验证用户
         $user_email = CacheService::instance()->get($token);
-        dd($user_email);
         $oUserInfo  = UserService::instance()->getUserInfoByEmail($user_email);
-
         if (!$oUserInfo) {
             $tips = $err_msg[ProfessionErrorCodeEnum::ERROR_ACCOUNT_NOT_EXIST];
             return self::showTemplate($tips, $user_email);
@@ -82,7 +88,7 @@ class UserController extends BaseController
 
         try {
             BaseModel::transStart();
-            if($oUserInfo->user_status == UserEnum::USER_STATUS_AWAITING_ACTIVATE)
+            if($oUserInfo->user_status == UserEnum::REGISTER_STATUS_FAIL)
                 if (!UserService::instance()->updateUserStatusForActivate($oUserInfo->user_id)) {
                     throw(new Exception('激活失败'));
                 }
@@ -121,7 +127,9 @@ class UserController extends BaseController
         ));
     }
 
-    //登录页
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function loginIndex()
     {
         return view('user.login');
@@ -130,7 +138,36 @@ class UserController extends BaseController
     //处理登录
     public function disposeLogin()
     {
+        $aRole = array(
+            'user_email' => 'required|email',
+            'user_pass'  => 'required',
+        );
+        $aCode = array(
+            "user_email"=>array(
+                ProfessionErrorCodeEnum::ERROR_USER_EMAIL_NULL,
+                ProfessionErrorCodeEnum::ERROR_EMAIL_FAILURE,
+            ),
+            "user_pass" => array(
+                ProfessionErrorCodeEnum::ERROR_PASSWORD_NULL
+            )
+        );
+        $this->validatorError($aRole,$aCode);
+        $user_email = $this->params['user_email'];
+        if(!$oUserInfo = UserService::instance()->getUserInfoByEmail($user_email))
+        {
+            $this->rest->error('该用户不存在');
+        }
 
+        if($this->params['user_pass'] != $oUserInfo->user_pass)
+        {
+            $this->rest->error('用户密码错误');
+        }
+        //建立cache
+        if(! UserService::instance()->createUserInfoCache($oUserInfo)){
+
+        }
+
+        $this->rest->success();
     }
 
 }

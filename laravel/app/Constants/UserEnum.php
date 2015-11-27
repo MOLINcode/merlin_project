@@ -8,13 +8,9 @@ namespace App\Constants;
 class UserEnum
 {
     /*****用户账号状态*****/
-    const STATUS_NORMAL = 1; //账号正常
-    const STATUS_OFFLINE = 2; //账号过期
-
-    /*****申请用户状态*****/
-    const REGISTER_STATUS_NORMAL = 1; //已注册，等待审核
-    const REGISTER_STATUS_PASS = 2; //审核通过
-    const REGISTER_STATUS_FAIL = 3; //审核失败
+    const REGISTER_STATUS_NORMAL = 1; //可用
+    const REGISTER_STATUS_PASS = 2; //不可用
+    const REGISTER_STATUS_FAIL = 3; //为激活
     public static function register_status()
     {
          $register_status = array(

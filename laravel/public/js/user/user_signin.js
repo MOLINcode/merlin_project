@@ -8,15 +8,15 @@ define(function(require,exports,module){
     $(document).keypress(function(e) {
         // 回车键事件
         if(e.which == 13) {
-            $("#submit").click();
+            $("#submitLogin").click();
         }
     });
 
     var user_login = function () {
         var postData = $('#__login_form').serialize();
-        var get_api = commonConf.uriSet.ajax_disposeSignIn;
-        T.restPost(get_api, postData, function (back) {
-            window.location = '/';
+        var url = commonConf.uriSet.ajax_disposeSignIn;
+        T.restPost(url, postData, function (back) {
+            //window.location = '/';
         }, function (back) {
             if (back.data.filed) {
                 $('#__login_form input[name=' + back.data.filed + ']')
@@ -31,7 +31,7 @@ define(function(require,exports,module){
         });
     }
 
-    $('#submit').click(function(){
+    $('#submitLogin').click(function(){
         if($(this).attr('disable') == 'disable'){
             return false;
         }
@@ -39,7 +39,7 @@ define(function(require,exports,module){
 
         user_login();
         setTimeout(function(){
-            $('#submit').removeAttr('disable');
+            $('#submitLogin').removeAttr('disable');
         },2000)
     });
 });

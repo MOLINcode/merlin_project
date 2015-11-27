@@ -2,27 +2,28 @@
 /**
  * Created by PhpStorm.
  * User: merlin
- * Date: 15-11-25
- * Time: 上午12:21
+ * Date: 15-11-27
+ * Time: 上午10:31
  */
 
 namespace App\Models\User;
 use App\Models\BaseModel;
-use App\Models\VO\Request\VO_Request_DimRegister;
+use App\Models\VO\Request\rVoUserInfo;
 use App\Constants\UserEnum;
 
-class UserRegisterModel extends BaseModel
-{
-    protected $table = 'user_register';
-    protected $primaryKey = 'register_id';
 
-    public function mkInfoForInsert(VO_Request_DimRegister $request)
+class UserInfoModel extends BaseModel
+{
+    protected $table = 'user_info';
+    protected $primaryKey = 'user_id';
+
+    public function mkInfoForInsert(rVoUserInfo $request)
     {
         return array(
             'user_email'       => $request->user_email,
             'user_name'        => $request->user_name,
             'register_time'    => time(),
-            'register_status'  => UserEnum::REGISTER_STATUS_PASS,
+            'user_status'  => UserEnum::REGISTER_STATUS_FAIL,
             'relationship_user' => $request->relationship_user,
         );
     }

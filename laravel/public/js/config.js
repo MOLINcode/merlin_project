@@ -4,7 +4,7 @@
 define(function(require,exports,moudle){
 
     var uriSet = {
-        ajax_disposeSignIn:'/disposeSignIn',
+        ajax_disposeSignIn:'/disposeLogin',
         ajax_disposeRegister:'/disposeRegister',
 
         //负载测试相关的url

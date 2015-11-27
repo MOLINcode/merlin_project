@@ -18,6 +18,7 @@ class ProfessionErrorCodeEnum extends  ErrorCodeEnum
     const ERROR_USER_EMAIL_NULL = 1405;
     const ERROR_URL_WRONG = 1406;
     const ERROR_ACTIVATE_EXPIRED = 1407;
+    const ERROR_PASSWORD_NULL = 1408;
 
 
 
@@ -30,6 +31,7 @@ class ProfessionErrorCodeEnum extends  ErrorCodeEnum
         self::ERROR_USER_NAME_NULL            => '用户名称为空',
         self::ERROR_URL_WRONG                 => '激活地址不正确',
         self::ERROR_ACTIVATE_EXPIRED          => '激活地址已过期',
+        self::ERROR_PASSWORD_NULL             => '密码不能为空',
 
     );
 

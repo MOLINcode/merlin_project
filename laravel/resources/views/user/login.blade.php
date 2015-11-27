@@ -29,7 +29,7 @@
 <body>
 <div class="signin text-center">
     <img src="{{asset('/img/logo_lg.png')}}">
-    <form method="post" id="__login_form" class="form-horizontal">
+    <form method="post" id="__login_form" class="form-horizontal" onsubmit="return false">
     <div class="form-group">
         <label for="" class="col-sm-3 control-label">{{Lang::get('system.account')}}：</label>
         <div class="col-sm-7">
@@ -61,7 +61,7 @@
     <div class="form-group">
         <label for="" class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-            <button class="btn btn-noicon btn-green w100 load" id="submit" type="button" >{{Lang::get('system.load')}}
+            <button class="btn btn-noicon btn-green w100 load" id="submitLogin" type="button" >{{Lang::get('system.load')}}
             </button>
         </div>
     </div>

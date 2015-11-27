@@ -142,4 +142,5 @@ class BaseController extends Controller
     {
         $this->rest->error(NULL, $code);
     }
+
 }

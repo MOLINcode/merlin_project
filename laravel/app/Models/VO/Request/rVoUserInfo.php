@@ -1,13 +1,15 @@
 <?php
-namespace App\Models\VO\Request;
-use App\Models\VO\VO_Common;
 /**
  * Created by PhpStorm.
- * User: dengchao
- * Date: 14-5-16
- * Time: 下午4:00
+ * User: merlin
+ * Date: 15-11-27
+ * Time: 上午10:35
  */
-class VO_Request_DimRegister extends VO_Common
+
+namespace App\Models\VO\Request;
+use App\Models\VO\VO_Common;
+
+class rVoUserInfo extends  VO_Common
 {
     public $user_id;
 

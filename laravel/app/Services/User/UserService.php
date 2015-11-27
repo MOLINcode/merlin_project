@@ -4,11 +4,13 @@
  * Class UserService
  */
 namespace App\Services\User;
+use App\Constants\UserEnum;
 use App\Services\BaseService;
 use App\Models\User\UserRegisterModel;
+use App\Models\User\UserInfoModel;
 use App\Services\Tool\MailService;
 use App\Models\VO\VO_Bound;
-use App\Models\VO\Request\VO_Request_DimRegister;
+use App\Models\VO\Request\rVoUserInfo;
 use App\Models\BaseModel;
 use App\Services\Tool\CacheService;
 use App\Constants\CacheExpireEnum;
@@ -16,7 +18,7 @@ use App\Constants\CacheExpireEnum;
 class UserService extends BaseService
 {
     private static $self = NULL;
-    public $mRegister;
+    public $mUserInfo;
 
     /**
      *
@@ -32,7 +34,7 @@ class UserService extends BaseService
     }
 
     public function __construct(){
-        $this->mRegister = new UserRegisterModel();
+        $this ->mUserInfo = new UserInfoModel();
     }
 
     /**
@@ -51,52 +53,79 @@ class UserService extends BaseService
         return $key;
     }
 
-    //创建注册信息
-    public function createRegister($params){
-        $aData = $this -> mRegister->mkInfoForInsert($params);
-        return  $this-> mRegister ->insert($aData);
+    /**
+     * @param $params
+     * @return int
+     */
+    public function createUserInfo($params){
+        $aData = $this -> mUserInfo->mkInfoForInsert($params);
+        return  $this-> mUserInfo ->insert($aData);
     }
 
     /**
-     * @var VO_Request_DimRegister
+     * @var rVoUserInfo
      */
-    public $oRegisterUserInfo = NULL;
+    public $oUserInfo = NULL;
 
-    public function setRequestRegisterInfoParams($params)
+    public function setRequestUserInfoParams($params)
     {
-        $this->oRegisterUserInfo = VO_Bound::Bound($params, NEW VO_Request_DimRegister());
+        $this->oUserInfo = VO_Bound::Bound($params, NEW rVoUserInfo());
 
-        return $this->oRegisterUserInfo;
+        return $this->oUserInfo;
     }
 
     /**
      * @return VO_Response_DimRegister
      */
-    public function getRegisterInfo()
+    public function getUserInfoById($uerId = null)
     {
-        $register_id = $this->oRegisterUserInfo->register_id;
-        if (!$register_id) return NULL;
+        $user_id = $this->oUserInfo->user_id?$this->oUserInfo->user_id:$uerId;
+        if (!$user_id) return NULL;
 
-        return $this->mRegister->fetchRow($register_id);
+        return $this->mUserInfo->fetchRow($user_id);
     }
 
-    //审核注册
+    /**
+     * @param  $user_email
+     * @return bool
+     * @throws Exception
+     */
+    public function getUserInfoByEmail($user_email){
+        if (!$user_email) return NULL;
+
+        return $this->mUserInfo->fetchRow(array('user_email'=>$user_email));
+    }
+
+    /**
+     * @param $user_id
+     */
+    public function updateUserStatusForActivate($user_id){
+        $arr = array(
+            'user_status' => UserEnum::REGISTER_STATUS_NORMAL,
+        );
+        $this->mUserInfo->update($arr,$user_id);
+    }
+
+    /**
+     * @param $params
+     * @return bool
+     * @throws Exception
+     */
     public function registerCheck($params){
         BaseModel::transStart();
         //创建用户注册表数据
-        $oData = $this->setRequestRegisterInfoParams($params);
-        if (!$register_id =$this->createRegister($oData)) {
+        $oData = $this->setRequestUserInfoParams($params);
+        //随机密码
+        $user_pass = self::makePassword(6);
+        $oData->user_pass = $user_pass;
+
+        if (!$user_id =$this->createUserInfo($oData)) {
             BaseModel::transRollBack();
             throw new Exception('注册用户失败！');
         }
 
-        $this->setRequestRegisterInfoParams(array('register_id'=>$register_id));
-        $registerInfo = $this->getRegisterInfo();
-
-
-        $user_pass = self::makePassword(6);
-
-
+        $this->setRequestUserInfoParams(array('user_id'=>$user_id));
+        $registerInfo = $this->getUserInfoById();
         BaseModel::transCommit();
         //发送邮件
         $token = md5(time().$registerInfo->user_email);
@@ -107,7 +136,30 @@ class UserService extends BaseService
         ), $registerInfo->user_email, $registerInfo->user_name, 'merlin-feng.com');
         //生成cache
         CacheService::instance()->set($token, $registerInfo->user_email, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
+
+       //用户表生成
         return TRUE;
+    }
+
+    /**
+     * @param $user_id
+     * @return bool
+     */
+    public function createUserInfoCache($oUserInfo){
+        $token = md5($oUserInfo->user_id);
+        $sUserInfo = json_encode($oUserInfo);
+        CacheService::instance()->set($token, $sUserInfo, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
+        return true;
+    }
+
+    public function getUserInfoCache($user_id){
+        $key = md5($user_id);
+        if(CacheService::instance()->exists($key)){
+            $jUserInfo = json_decode(CacheService::instance()->get($key));
+            return $jUserInfo;
+        }
+
+        return $this->getUserInfoById($user_id);
     }
 
 
