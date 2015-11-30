@@ -1163,6 +1163,3 @@ label.checked {
     background: url(/img/del.png) no-repeat center center;
 }
 
-.taskTplTr .glyphicon{
-    color:green;
-}

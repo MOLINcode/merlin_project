@@ -80,7 +80,7 @@ class ResourceSpall
     static public function getResourceVersion()
     {
         if (is_null(self::$version)) {
-            self::$version = Config::get('app.resource.version');
+            self::$version = Config::get('view.version');
         }
 
         return self::$version;
@@ -92,7 +92,7 @@ class ResourceSpall
     static public function includeCSS($key){
         $cssArr = self::getCSS($key);
         foreach($cssArr as $v){
-            echo '<link rel="stylesheet" type="text/css" href="/resource/css/'.$v.'?v='.ResourceSpall::getResourceVersion().'" />'."\n";
+            echo '<link rel="stylesheet" type="text/css" href="/css/'.$v.'?v='.ResourceSpall::getResourceVersion().'" />'."\n";
         }
     }
 

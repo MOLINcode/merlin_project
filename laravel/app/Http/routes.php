@@ -13,9 +13,10 @@
 function IncludeRouteGroup($routeFileName){
     include app_path().'/RouteGroup/'.$routeFileName;
 }
-Route::get('/', function () {
-    return view('welcome');
-});
 
 //注册
 IncludeRouteGroup('CommonRoute.php');
+//文章处理
+IncludeRouteGroup('ArticleRoute.php');
+//后台
+IncludeRouteGroup('AdminRoute.php');
