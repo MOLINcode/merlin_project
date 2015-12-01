@@ -1,4 +1,5 @@
 <?php
+namespace App\ViewSpall;
 class bladeSpall {
     /**
      * 生成面包屑导航
@@ -9,7 +10,7 @@ class bladeSpall {
      */
     public static function showBreadCrumb($iconClass, $process = array(),  $createName = NULL){
 
-        return View::make('common.main_title')->with(
+        return view('common.main_title',
             array(
                 'iconClass'=>$iconClass,
                 'process'=>$process,

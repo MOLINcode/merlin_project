@@ -51,10 +51,12 @@ seajs.config({
         //用户管理
         user_register:'user/user_register.js',
         user_signin:'user/user_signin.js',
-        group:'user/group.js',
-        user_center:'user/ucenter.js',
+
         //表单异步文件提交
         ajaxFormSubmit:'common/jquery/jquery.form.js',
+
+        //后台分类管理
+        'category':'admin/category.js',
 
     },
     // 预加载项

@@ -22,6 +22,11 @@ class ResourceSpall
                 'common/switch.css',
                 'common/user_center.css',
             ),
+
+            //后台分类
+            'category' => array(
+                'admin/category.css'
+            ),
         );
 
         return $CSS[$key];

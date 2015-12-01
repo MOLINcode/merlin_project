@@ -1,108 +1,53 @@
-{{--@extends('layouts.master')--}}
-<div class="tree well">
-    <link href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <style>
-        /*树插件样式*/
-        .tree {
-            min-height: 20px;
-            padding: 19px;
-            margin-bottom: 20px;
-            background-color: #fbfbfb;
-            border: 1px solid #48B74D;
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05)
-        }
+@extends('layouts.master')
+@section('app_css')
+{{App\ViewSpall\ResourceSpall::includeCSS('category')}}
+@endsection
+@section('content')
+    <div class="main">
+        <div class="main-title clearfix">
+            <ol class="fl breadcrumb data-store">
+                <li><a href="javascript:;">后台管理</a></li>
+                <li><a href="javascript:;">分类管理</a></li>
+            </ol>
+            <div class="fr title-crumb">
+                <a class="btn btn-icon btn-orange" href="/category/create "><img src="{{asset('/img/plus.png')}}">创建分类</a>
+            </div>
+        </div>
+        <div class="main-status">
+            <ul class="nav nav-pills" role="tablist">
+                <li>分类</li>
+                <li role="presentation" class="active">
+                    <a href="#all-store-tab" aria-controls="all-store-tab" role="tab" data-toggle="tab" id="countall">所有&nbsp;(<span>5</span>)</a>
+                </li>
+                <li class="pull-right">
+                    <div class="filter_tag">
+                        <div class="filter_search">
+                            <input type="text" placeholder="按数据名称搜索" id="searchName" name="searchName">
+                            <span class="fa fa-search" id="searchDataBtn"></span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="all-store-tab">
+                    <div class="table-responsive main-table" id="dataStoreListId">
+                        <div class="loading" style="height: 300px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        .tree li {
-            list-style-type: none;
-            margin: 0;
-            padding: 10px 5px 0 5px;
-            position: relative
-        }
 
-        .tree li::before, .tree li::after {
-            content: '';
-            left: -20px;
-            position: absolute;
-            right: auto
-        }
 
-        .tree li::before {
-            border-left: 1px solid #48b74d;
-            bottom: 50px;
-            height: 100%;
-            top: 0;
-            width: 1px
-        }
+    </div>
+    <!-- 创建测试场景弹出框 -->
+    <div class="modal size" id="new_data_store" tabindex="-1" role="dialog" aria-labelledby="new_data_store_myModalLabel">
 
-        .tree li::after {
-            border-top: 1px solid #48b74d;
-            height: 20px;
-            top: 25px;
-            width: 25px
-        }
+    </div>
+@endsection
+@section('app_js')
+    <script>
+        seajs.use('category');
+    </script>
+@endsection
 
-        .tree li span {
-            color: darkgreen;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-            border: 1px solid #48b74d;
-            border-radius: 8px;
-            display: inline-block;
-            padding: 3px 10px;
-            text-decoration: none
-        }
-
-        .tree li.parent_li > span {
-            cursor: pointer
-        }
-
-        .tree > ul > li::before, .tree > ul > li::after {
-            border: 0
-        }
-
-        .tree li:last-child::before {
-            height: 30px
-        }
-
-        .tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
-            background: #eee;
-            border: 1px solid #48b74d;
-            color: #1A7966
-        }
-
-        .tree a {
-            color: #48b74d;
-            text-decoration: none;
-        }
-
-        /*end*/
-    </style>
-   {{App\Services\Tool\ToolKit::printTreetList($treeData)}}
-</div>
-<script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '关闭节点');
-        $('.tree ul li:not(.parent_li)').find(' > span > i ').addClass('fa-leaf').removeClass('fa-folder-open');
-        $('.tree li a').attr('title', '修改分类');
-        $('.tree li a').on('click',function () {
-            alert('Node:'+$(this).attr('id')+'父节点：'+$(this).parent().parent().parent('ul>a'));
-        });
-        $('.tree li.parent_li > span').on('click', function (e) {
-            var children = $(this).parent('li.parent_li').find(' > ul > li');
-            if (children.is(":visible")) {
-                children.hide('fast');
-                $(this).attr('title', '展开节点').find(' > i').addClass('fa-plus-square').removeClass('fa-minus-square');
-            } else {
-                children.show('fast');
-                $(this).attr('title', '关闭节点').find(' > i').addClass('fa-minus-square').removeClass('fa-plus-square');
-            }
-            e.stopPropagation();
-        });
-    });
-</script>

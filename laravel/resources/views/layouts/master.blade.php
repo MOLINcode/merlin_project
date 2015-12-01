@@ -101,7 +101,7 @@ $version = App\ViewSpall\ResourceSpall::getResourceVersion();
 @yield('common_js_config')
 @yield('front_header')
 
-{{--@yield('front_left')--}}
+@yield('front_left')
 @yield('content')
 @yield('common_js_footer')
 @yield('app_js')
