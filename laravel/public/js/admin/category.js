@@ -17,14 +17,28 @@ define(function(require,exports,module){
         $("#new_data_store").on("hidden.bs.modal", function() {
             $(this).removeData("bs.modal");
         });
-
+        var data = {"page":1};
+        getCateList(data);
     }
 
 
+    $(document).delegate('#saveCate','click',function(){
+        var createUrl = '/admin/addCategory';
+        var postData = $("#addCategory").serialize();
+        console.log(postData);
+        T.restPost(createUrl,postData,function(data){
+
+        })
+
+    })
+    var getCateList = function(data){
+        var url = '/admin/ajaxCategoryList';
+
+        T.ajaxLoad(url,'ajaxCategoryList',data,function(){})
+    }
+
     //初始化方法
     init();
-    var url = '/admin/ajaxCategoryList';
-    T.ajaxLoad(url,'ajaxCategoryList',data,function(){})
     //导出的方法
     module.exports = {};
 });

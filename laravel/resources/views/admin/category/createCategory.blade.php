@@ -17,9 +17,7 @@
                         <label for="name_data_store" class="col-sm-3 control-label">上级分类</label>
                         <div class="col-sm-9">
                             <select name="" id="" class="form-control col-sm-9">
-                                <option>固定分类</option>
-                                <option>分类1</option>
-                                <option>分类2</option>
+                                <option>上级分类</option>
                             </select>
                         </div>
                     </div>
@@ -27,42 +25,42 @@
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类名称</label>
                         <div class="col-sm-7">
-                           <input type="text" class="form-control" id="up_file" placeholder="名称">
+                           <input type="text" name="cName" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类别称</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="up_file" placeholder="名称">
+                            <input type="text" name="aName" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO关键字</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="up_file" placeholder="关键字">
+                            <input type="text" class="form-control" name="seo_key" placeholder="关键字">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO标题</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" id="up_file" placeholder="标题">
+                            <input type="text" class="form-control" name="seo_title" placeholder="标题">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO描述</label>
                         <div class="col-sm-7">
-                            <textarea name="" id="" class="form-control" rows="5"></textarea>
+                            <textarea name="" id="" class="form-control" name="seo_des" rows="5"></textarea>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer" >
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-noicon btn-green dataSave">保存</button>
+                    <button type="button" id="saveCate" class="btn btn-noicon btn-green dataSave">保存</button>
                 </div>
             </form>
 
@@ -70,10 +68,3 @@
     </div>
 @endsection
 
-@section('app_js')
-    <script>
-        seajs.use(['T'],function(T){
-
-        });
-    </script>
-@endsection

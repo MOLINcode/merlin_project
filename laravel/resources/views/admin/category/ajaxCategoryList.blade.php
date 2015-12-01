@@ -4,7 +4,7 @@
 
     <div class="sad">
         <div class="sad-img">
-            <img src="/resource/img/sad.png">
+            <img src="{{asset('/img/sad.png')}}">
         </div>
         <div class="sad-font">
             <p>没有类</p>
