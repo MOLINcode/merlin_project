@@ -7,7 +7,7 @@ use App\Http\Controllers\BaseController;
 use App\Services\Tool\Tree;
 use App\Services\Tool\ToolKit;
 
-class CateGoryController extends BaseController
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CateGoryController extends BaseController
      */
     public function index()
     {
-        return view('admin.categoryList');
+        return $this->view('admin.categoryList');
     }
 
     /**
@@ -26,7 +26,7 @@ class CateGoryController extends BaseController
      */
     public function create()
     {
-        //
+     return $this->viewAjax('admin.createCategory');
     }
 
     /**

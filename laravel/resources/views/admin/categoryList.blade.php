@@ -10,7 +10,7 @@
                 <li><a href="javascript:;">分类管理</a></li>
             </ol>
             <div class="fr title-crumb">
-                <a class="btn btn-icon btn-orange" href="/category/create "><img src="{{asset('/img/plus.png')}}">创建分类</a>
+                <a class="btn btn-icon btn-orange" href="/admin/category/create "><img src="{{asset('/img/plus.png')}}">创建分类</a>
             </div>
         </div>
         <div class="main-status">

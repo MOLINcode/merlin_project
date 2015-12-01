@@ -7,6 +7,7 @@ use App\Constants\ErrorCodeEnum;
 use App\Constants\UserMenuEnum;
 use Request;
 use Validator;
+use View;
 
 /**
  * Class BaseController
@@ -90,11 +91,12 @@ class BaseController extends Controller
      */
     protected function view($template, $spall = 'content')
     {
-        $this->layout->$spall   = view($template);
-        $this->layout->front_header = view('layouts.front_common.head');
-        $this->layout->front_left = view('layouts.front_common.left')->with(array(
-            'leftMenus' => UserMenuEnum::getLeftMenu(),
-        ));
+        $this->layout = View::make($this->layout);
+        $this->layout->$spall   = View::make($template);
+        $this->layout->front_header = View::make('layouts.admin_common.head');
+//        $this->layout->front_left = View::make('layouts.admin_common.left')->with(array(
+//            'leftMenus' => UserMenuEnum::getLeftMenu(),
+//        ));
         return $this->layout->$spall;
     }
 
@@ -105,8 +107,8 @@ class BaseController extends Controller
      */
     protected function viewAjax($template, $spall = 'content')
     {
-        $this->layout         = view('layouts.ajax_master');
-        $this->layout->$spall = view($template);
+        $this->layout         = View::make('layouts.ajax_master');
+        $this->layout->$spall = View::make($template);
         return $this->layout->$spall;
     }
 

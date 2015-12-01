@@ -7,5 +7,9 @@
  */
 
 Route::group(array('prefix' => '/admin'),function () {
-    Route::get('/category', 'Admin\CateGoryController@index');
+    //分类列表
+    Route::get('/category', 'Admin\CategoryController@index');
+
+    //创建分类
+    Route::get('/category/create','Admin\CategoryController@create');
 });

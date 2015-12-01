@@ -1,50 +1,35 @@
-@section('admin_head')
-<div class="navbar navbar-inverse navbar-fixed-top web-navbar-top">
+@section('front_header')
+<!-- header start -->
+<div class="navbar navbar-fixed-top web-navbar-top">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#web-navbar-collapse">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#web-navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a href="/" class="navbar-brand"><img src="/resource/img/logo.png">
+        <a href="/" class="navbar-brand">
+            <img src="{{asset('/img/common/logo.png')}}">
         </a>
     </div>
     <div id="web-navbar-collapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <!-- 变动html以及class -->
-                <div class="createNewProjectTarget" tabindex='-1'>
-                    <div class="establish" data-url="/app/create">
-                        <a href="/app/create">
-                            <span class="establish_app"></span>
-                            <div class="establish_text">应用</div>
-                        </a>
-                    </div>
-
-                    <div class="establish" data-url="/mobile/sdk/app_create">
-                        <a href="/mobile/sdk/app_create">
-                            <span class="establish_mobile"></span>
-                            <div class="establish_text">移动</div>
-                        </a>
-                    </div>
-
-                </div>
-                <!-- 变动html以及class -->
+                <a class="pdtop-20" href="#" target="_blank">
+                    <img src="{{asset('/img/common/help.png')}}" alt="帮助中心"></a>
             </li>
             <li>
-                <a class="navbar-userpic" data-toggle="modal" data-target="#userCenter" href="/user/center">
-                    <img src="/resource/img/avatar/025.jpg" alt=""/>
-                    <span class="navbar-username">{{ $info->admin_name }}</span>
+                <a href="/user/center" data-toggle="modal" data-target="#user_center">
+                    <span class="navbar-username">merlin</span>
+                    <img src="/resource/img/common/user_head.png" alt="">
                 </a>
             </li>
             <li>
-                <a href="/login_out" title="退出系统" onclick="Javascript:return confirm('确实要退出系统吗？')"><img src="/resource/img/icon/exit.png" alt="exit"></a>
+                <a href="/signin_out" title="退出系统" onclick="javascript:return confirm('{{Lang::get('common.quit_alert')}}')"><img src="{{asset('/img/exit.png')}}" alt="exit"></a>
             </li>
         </ul>
     </div>
 </div>
-
-@stop
-
-
+{{--//用户中心--}}
+<div id="user_center" class="modal"></div>
+@endsection
