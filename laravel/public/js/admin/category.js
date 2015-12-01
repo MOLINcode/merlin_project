@@ -21,10 +21,10 @@ define(function(require,exports,module){
     }
 
 
-
     //初始化方法
     init();
-
+    var url = '/admin/ajaxCategoryList';
+    T.ajaxLoad(url,'ajaxCategoryList',data,function(){})
     //导出的方法
     module.exports = {};
 });

@@ -2,6 +2,7 @@
 
 namespace App\Constants;
 use App\Constants\MenuEnum;
+use App\Constants\AuthEnum;
 use Lang;
 use Route;
 class UserMenuEnum extends MenuEnum
@@ -72,10 +73,10 @@ class UserMenuEnum extends MenuEnum
     {
         $leftData = static::TsbLeftMenus();
         foreach ($leftData as $key=>&$menu) {
-            if (array_key_exists(self::AUTH, $menu) && !AuthService::Auth($menu[self::AUTH])) {
-                unset($leftData[$key]);
-                continue;
-            }
+//            if (array_key_exists(self::AUTH, $menu) && !AuthService::Auth($menu[self::AUTH])) {
+//                unset($leftData[$key]);
+//                continue;
+//            }
             $menu[self::ACTIVE] = false;
             if (array_key_exists(self::GROUP, $menu) && $menu[self::GROUP] == self::getCurrentActions('group')) {
                 $menu[self::ACTIVE] = true;

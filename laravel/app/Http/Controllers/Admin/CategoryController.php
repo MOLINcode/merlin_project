@@ -16,7 +16,13 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        return $this->view('admin.categoryList');
+        return $this->view('admin.category.categoryList');
+    }
+
+    //ajax获取列表
+    public function ajaxLoadList()
+    {
+        return $this->viewAjax('admin.category.ajaxCategoryList');
     }
 
     /**
@@ -26,7 +32,7 @@ class CategoryController extends BaseController
      */
     public function create()
     {
-     return $this->viewAjax('admin.createCategory');
+     return $this->viewAjax('admin.category.createCategory');
     }
 
     /**

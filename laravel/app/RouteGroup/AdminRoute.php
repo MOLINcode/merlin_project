@@ -9,7 +9,8 @@
 Route::group(array('prefix' => '/admin'),function () {
     //分类列表
     Route::get('/category', 'Admin\CategoryController@index');
-
     //创建分类
     Route::get('/category/create','Admin\CategoryController@create');
+    //ajax分类列表
+    Route::post('/ajaxCategoryList','Admin\CategoryController@ajaxLoadList');
 });

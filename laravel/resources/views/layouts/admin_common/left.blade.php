@@ -8,7 +8,6 @@
                             <tr>
                                 <td>
                                     {{$menu['label']}}<br>
-                                    @if(isset($menu['count'])) <span>({{$menu['count']}})</span> @endif
                                 </td>
                             </tr>
                         </table>

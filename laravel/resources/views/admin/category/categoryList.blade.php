@@ -30,7 +30,7 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="all-store-tab">
-                    <div class="table-responsive main-table" id="dataStoreListId">
+                    <div class="table-responsive main-table" id="ajaxCategoryList">
                         <div class="loading" style="height: 300px;"></div>
                     </div>
                 </div>

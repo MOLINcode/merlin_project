@@ -6,27 +6,6 @@ define(function(require,exports,moudle){
     var uriSet = {
         ajax_disposeSignIn:'/disposeLogin',
         ajax_disposeRegister:'/disposeRegister',
-
-        //负载测试相关的url
-        testCase_ajaxGetSearchList:'/testCase/ajaxGetSearchList',
-
-        //数据仓库相关的路由
-        dataStore_ajaxGetList: '/dataStore/ajaxGetList',
-        dataStore_delete:'/dataStore/delete',
-
-        //测试场景
-        testScene_ajaxGetList: '/testScene/ajaxGetList',
-        testScene_delete:'/testScene/delete',
-        testScene_ajaxCreate:'/testScene/doCreate',
-        testScene_edit:'/testScene/create',
-
-        //测试模板
-        taskTpl_ajaxList:'/taskTpl/ajaxGetList',
-        taskTpl_delete:'/taskTpl/delete/',
-        taskTpl_appoint:'/taskTpl/appoint/',
-        taskTpl_disposeCreate:'/taskTpl/disposeCreate',
-        taskTpl_ajaxLoadTestScene:'/taskTpl/ajaxLoadTestSceneList',
-        taskTpl_ajaxLoadTestData:'/taskTpl/ajaxLoadTestDataList',
     };
 
     var app_setting = {

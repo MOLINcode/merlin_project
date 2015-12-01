@@ -92,11 +92,11 @@ class BaseController extends Controller
     protected function view($template, $spall = 'content')
     {
         $this->layout = View::make($this->layout);
-        $this->layout->$spall   = View::make($template);
-        $this->layout->front_header = View::make('layouts.admin_common.head');
-//        $this->layout->front_left = View::make('layouts.admin_common.left')->with(array(
-//            'leftMenus' => UserMenuEnum::getLeftMenu(),
-//        ));
+        $this->layout->$spall   = view($template);
+        $this->layout->front_header = view('layouts.admin_common.head');
+        $this->layout->front_left = view('layouts.admin_common.left')->with(array(
+            'leftMenus' => UserMenuEnum::getLeftMenu(),
+        ));
         return $this->layout->$spall;
     }
 
