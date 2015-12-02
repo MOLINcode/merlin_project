@@ -121,11 +121,15 @@ class BaseController extends Controller
      */
     protected function validatorError(array $validator_rule, array $error_message)
     {
+//        dd($error_message);
         foreach ($validator_rule as $filed => $rules) {
+//            dd($filed,$rules);
             if (!is_array($rules)) {
                 $rules = explode('|', $rules);
             }
+
             foreach ($rules as $key => $rule) {
+//                dd($key,$rule);
                 $validator = Validator::make(array($filed => $this->params[$filed]), array($filed => $rule));
                 if ($validator->fails()) {
                     $this->rest->error(NULL, $error_message[$filed][$key], array('filed' => $filed));

@@ -5,7 +5,7 @@ define(function(require,exports,module){
     //引入T
     var T = require('T');
     var commonConf = require('commonConf');
-
+    var data = {"page":1};
     var init = function(){
         $(".fr.title-crumb").attr({'data-toggle':'modal','data-target':'#new_data_store'});
         $("#new_data_store").modal({
@@ -17,21 +17,13 @@ define(function(require,exports,module){
         $("#new_data_store").on("hidden.bs.modal", function() {
             $(this).removeData("bs.modal");
         });
-        var data = {"page":1};
+
         getCateList(data);
     }
 
 
-    $(document).delegate('#saveCate','click',function(){
-        var createUrl = '/admin/addCategory';
-        var postData = $("#addCategory").serialize();
-        console.log(postData);
-        T.restPost(createUrl,postData,function(data){
-
-        })
-
-    })
     var getCateList = function(data){
+
         var url = '/admin/ajaxCategoryList';
 
         T.ajaxLoad(url,'ajaxCategoryList',data,function(){})
@@ -40,5 +32,7 @@ define(function(require,exports,module){
     //初始化方法
     init();
     //导出的方法
-    module.exports = {};
+    module.exports = {
+        'getCateList': getCateList(data),
+    };
 });

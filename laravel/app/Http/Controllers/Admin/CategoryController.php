@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests;
 use App\Http\Controllers\BaseController;
 use App\Services\Tool\Tree;
 use App\Services\Tool\ToolKit;
+use App\Constants\Category;
+use App\Services\Category\CategoryService;
+
 
 class CategoryController extends BaseController
 {
@@ -22,7 +24,10 @@ class CategoryController extends BaseController
     //ajax获取列表
     public function ajaxLoadList()
     {
-        return $this->viewAjax('admin.category.ajaxCategoryList');
+        $tree =  CategoryService::instance()->ajaxCateList();
+        return $this->viewAjax('admin.category.ajaxCategoryList')->with(array(
+            'listData' => $tree,
+        ));
     }
 
     /**
@@ -43,7 +48,12 @@ class CategoryController extends BaseController
      */
     public function store()
     {
-        dd(111);
+        $this->validatorError(Category::$aRole,Category::$aCode);
+        if(!CategoryService::instance()->createCategory($this->params)){
+            $this->rest->error('创建失败');
+        }
+        $this->rest->success('','','创建成功');
+
     }
 
     /**
@@ -75,7 +85,7 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         //
     }

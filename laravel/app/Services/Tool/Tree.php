@@ -22,7 +22,7 @@ class Tree
      * @param array $fields 树型数据表字段，array(分类id,父id)
      * @param integer $root 顶级分类的父id
      */
-    public function __construct($result, $fields = array('id', 'pid'), $root = 0)
+    public function __construct($result, $fields = array('cate_id', 'pid'), $root = 0)
     {
         $this->result = $result;
         $this->fields = $fields;
@@ -36,6 +36,8 @@ class Tree
     private function handler()
     {
         foreach ($this->result as $node) {
+            //对象转数组
+            $node = get_object_vars($node);
             $tmp[$node[$this->fields[1]]][] = $node;
         }
         krsort($tmp);

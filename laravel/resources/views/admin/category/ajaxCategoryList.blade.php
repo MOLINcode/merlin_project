@@ -2,6 +2,7 @@
 
 @section('content')
 
+    @if(!$listData)
     <div class="sad">
         <div class="sad-img">
             <img src="{{asset('/img/sad.png')}}">
@@ -10,41 +11,39 @@
             <p>没有类</p>
         </div>
     </div>
-
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>分类名</th>
-            <th>父类</th>
-            <th>别名</th>
-            <th>创建时间</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
+    @else
+        <div class="tree well">
+            {{treeList($listData)}}
+        </div>
+    @endif
 
 
-            <tr>
-                <td>1</td>
-                <td>分类1</td>
-                <td>父类1</td>
-                <td>bie</td>
-                <td>2015-11-11 10:34:12</td>
-                <td>
-                    <div class="change">
-                        <a href="" data-toggle="modal" data-target="#create_modal" class="editTestScene" >
-                            <img src="{{asset('/img/common/edit.png')}}" alt="编辑">
-                        </a>
-                        <img class="delTestScene" src="{{asset('/img/common/del.png')}}" alt="删除">
-                    </div>
-                </td>
-            </tr>
+@endsection
 
-
-        </tbody>
-    </table>
-
-
+@section('app_js')
+    <script>
+        seajs.use(['T'],function(T){
+            var treeList = function () {
+                $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '关闭节点');
+                $('.tree ul li:not(.parent_li)').find(' > span > i ').addClass('fa-leaf').removeClass('fa-folder-open');
+                $('.tree li a').attr('title', '修改分类');
+                $('.tree li a').on('click',function () {
+                    alert('Node:'+$(this).attr('id')+'父节点：'+$(this).parent().parent().parent('ul>a'));
+                });
+                $('.tree li.parent_li > span').on('click', function (e) {
+                    var children = $(this).parent('li.parent_li').find(' > ul > li');
+                    if (children.is(":visible")) {
+                        children.hide('fast');
+                        $(this).attr('title', '展开节点').find(' > i').addClass('fa-plus-square').removeClass('fa-minus-square');
+                    } else {
+                        children.show('fast');
+                        $(this).attr('title', '关闭节点').find(' > i').addClass('fa-minus-square').removeClass('fa-plus-square');
+                    }
+                    e.stopPropagation();
+                });
+            }
+            treeList();
+        })
+    </script>
 @endsection
 

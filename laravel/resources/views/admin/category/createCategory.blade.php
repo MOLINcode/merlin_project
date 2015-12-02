@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="name_data_store" class="col-sm-3 control-label">上级分类</label>
                         <div class="col-sm-9">
-                            <select name="" id="" class="form-control col-sm-9">
+                            <select name="pid" id="" class="form-control col-sm-9">
                                 <option>上级分类</option>
                             </select>
                         </div>
@@ -25,14 +25,14 @@
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类名称</label>
                         <div class="col-sm-7">
-                           <input type="text" name="cName" class="form-control" placeholder="名称">
+                           <input type="text" name="cate_name" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类别称</label>
                         <div class="col-sm-7">
-                            <input type="text" name="aName" class="form-control" placeholder="名称">
+                            <input type="text" name="as_name" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
@@ -53,18 +53,40 @@
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO描述</label>
                         <div class="col-sm-7">
-                            <textarea name="" id="" class="form-control" name="seo_des" rows="5"></textarea>
+                            <textarea id="" class="form-control" name="seo_desc" rows="5"></textarea>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer" >
                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" id="saveCate" class="btn btn-noicon btn-green dataSave">保存</button>
+                    <button type="button" id="saveCate" class="btn btn-noicon btn-green">保存</button>
                 </div>
             </form>
 
         </div>
     </div>
+@endsection
+
+@section('app_js')
+    <script>
+        seajs.use(['category','T'],function(category,T){
+            $(document).delegate('#saveCate','click',function(){
+                var createUrl = '/admin/addCategory';
+                var postData = $("#addCategory").serialize();
+                console.log(postData);
+                T.restPost(createUrl,postData,function(data){
+                    if(data.code == 1000){
+                        $("#new_data_store").modal('hide');
+                        T.alert(data.msg,'success');
+                        category.getCateList({'page':1});
+                    }else{
+                        T.alert(data.msg,'error');
+                    }
+                })
+
+            })
+        });
+    </script>
 @endsection
 
