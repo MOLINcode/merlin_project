@@ -236,15 +236,22 @@ if(!function_exists('treeList')){
         echo "<ul>";
         foreach ($tree as $v) {
             if (checkChild($v)) {
-                echo "<li>";
-                echo '<span> <i class="fa fa-folder-open"> </i> 节点
-                </span><a id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>';
+                echo "<li data-cate-id='".$v['cate_id']."'>";
+                echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
+                </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
+                '<img class="editCategory" src="/img/common/edit.png" alt="编辑">'.
+                '<img class="delCategory" src="/img/common/del.png" alt="删除">';
+
+
+
                 treeList($v['child']);
                 echo "</li>";
             } else {
-                echo "<li >";
-                echo '<span> <i class="fa fa-folder-open"> </i> 节点
-                </span><a id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>';
+                echo "<li data-cate-id='".$v['cate_id']."'>";
+                echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
+                </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
+                '<img class="editCategory" src="/img/common/edit.png" alt="编辑">'.
+                '<img class="delCategory" src="/img/common/del.png" alt="删除">';
                 echo "</li>";
             }
         }
