@@ -8,6 +8,7 @@ use App\Constants\UserMenuEnum;
 use Request;
 use Validator;
 use View;
+use Route;
 
 /**
  * Class BaseController

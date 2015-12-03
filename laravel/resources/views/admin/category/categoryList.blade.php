@@ -9,7 +9,7 @@
                 <li><a href="javascript:;">后台管理</a></li>
                 <li><a href="javascript:;">分类管理</a></li>
             </ol>
-            <div class="fr title-crumb">
+            <div class="fr title-crumb" data-toggle="modal" data-target="#new_data_store">
                 <a class="btn btn-icon btn-orange" href="/admin/category/create "><img src="{{asset('/img/plus.png')}}">创建顶级分类</a>
             </div>
         </div>

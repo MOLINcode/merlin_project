@@ -43,6 +43,22 @@
                 });
             }
             treeList();
+            //添加弹窗属性
+            $("li .addCategory,.editCategory").attr({'data-toggle':'modal','data-target':'#new_data_store'});
+            $(document).delegate('li .addCategory,.editCategory','click',function(){
+                $("#new_data_store").on("hidden.bs.modal", function() {
+                    $(this).removeData("bs.modal");
+                });
+                var cate_id = $(this).parent().data('cate_id');
+                var type = $(this).data('type');
+                var cate_name = $(this).siblings('a').html();
+                console.log(cate_name);
+                url = '/admin/editCategory/'+cate_id;
+                T.restGet(url,{"type":type},function(){
+
+                });
+
+            })
         })
     </script>
 @endsection

@@ -14,46 +14,46 @@
                     <p class="explain">如果创建顶级分类则直接创建,或者选择指定分类下创建分类</p>
 
                     <div class="form-group">
-                        <label for="name_data_store" class="col-sm-3 control-label">上级分类</label>
-                        <div class="col-sm-9">
-                            <select name="pid" id="" class="form-control col-sm-9">
-                                <option>上级分类</option>
-                            </select>
+                        <label for="name_data_store" class="col-sm-3 control-label">父级分类</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="pid" value="" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类名称</label>
                         <div class="col-sm-7">
-                           <input type="text" name="cate_name" class="form-control" placeholder="名称">
+                           <input type="text" name="cate_name" value="{{$cateInfo->cate_name}}" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类别称</label>
                         <div class="col-sm-7">
-                            <input type="text" name="as_name" class="form-control" placeholder="名称">
+                            <input type="text" name="as_name" value="{{$cateInfo->as_name}}" class="form-control" placeholder="名称">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO关键字</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="seo_key" placeholder="关键字">
+                            <input type="text" class="form-control" value="{{$cateInfo->seo_key}}" name="seo_key" placeholder="关键字">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO标题</label>
                         <div class="col-sm-7">
-                            <input type="text" class="form-control" name="seo_title" placeholder="标题">
+                            <input type="text" class="form-control" value="{{$cateInfo->seo_title}}"  name="seo_title" placeholder="标题">
                         </div>
                     </div>
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO描述</label>
                         <div class="col-sm-7">
-                            <textarea id="" class="form-control" name="seo_desc" rows="5"></textarea>
+                            <textarea id="" class="form-control" name="seo_desc" rows="5">
+                                {{$cateInfo->seo_desc}}
+                            </textarea>
                         </div>
                     </div>
 

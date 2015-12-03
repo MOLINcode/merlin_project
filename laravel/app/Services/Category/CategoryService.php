@@ -78,4 +78,9 @@ class CategoryService extends BaseService
         return $treeData;
 
     }
+
+    public function getCateInfoById($cate_id){
+       $row =  $this->mCategory->fetchRow($cate_id);
+        return $row;
+    }
 }

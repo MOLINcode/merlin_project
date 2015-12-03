@@ -236,19 +236,19 @@ if(!function_exists('treeList')){
         echo "<ul>";
         foreach ($tree as $v) {
             if (checkChild($v)) {
-                echo "<li data-cate-id='".$v['cate_id']."'>";
+                echo "<li data-cate_id='".$v['cate_id']."'>";
                 echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
                 </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
-                '<img class="editCategory" src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
-                '<img class="editCategory" src="/img/common/edit.png" title="编辑" alt="编辑">';
+                '<img class="addCategory" data-type="create" src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
+                '<img class="editCategory" data-type="edit" src="/img/common/edit.png" title="编辑" alt="编辑">';
                 treeList($v['child']);
                 echo "</li>";
             } else {
-                echo "<li data-cate-id='".$v['cate_id']."'>";
+                echo "<li data-cate_id='".$v['cate_id']."'>";
                 echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
                 </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
-                '<img class="editCategory" src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
-                '<img class="editCategory" src="/img/common/edit.png" title="编辑" alt="编辑">'.
+                '<img class="addCategory" data-type="create"  src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
+                '<img class="editCategory" data-type="edit" src="/img/common/edit.png" title="编辑" alt="编辑">'.
                 '<img class="delCategory" src="/img/common/del.png" title="删除" alt="删除">';
                 echo "</li>";
             }

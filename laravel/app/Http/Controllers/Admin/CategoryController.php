@@ -7,11 +7,12 @@ use App\Services\Tool\Tree;
 use App\Services\Tool\ToolKit;
 use App\Constants\Category;
 use App\Services\Category\CategoryService;
+use App\Models\VO\Request\VO_Category;
 
 
 class CategoryController extends BaseController
 {
-    /**
+    /**+'?'+type
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -31,20 +32,43 @@ class CategoryController extends BaseController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 创建
+     * @return mixed
      */
     public function create()
     {
-     return $this->viewAjax('admin.category.createCategory');
+
+        $obj = new VO_Category;
+
+        if($cate_id = $this->getParam('cate_id')){
+            $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
+            if($this->params['type'] == 'create'){
+                return $this->viewAjax('admin.category.createCategory')->with(
+                    array(
+                        'pid' => $cateInfo->cate_id,
+                        'pName' =>$cateInfo->cate_name
+                    )
+                );
+            }
+            return $this->viewAjax('admin.category.createCategory')->with(
+                array(
+                    'cateInfo' => $cateInfo
+                )
+            );
+
+        }
+        return $this->viewAjax('admin.category.createCategory')->with(
+             array(
+                'cateInfo'  => $obj,
+             )
+        );
     }
 
+    public function edit(){
+
+    }
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 创建 编辑
      */
     public function store()
     {
@@ -56,48 +80,5 @@ class CategoryController extends BaseController
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update($id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
