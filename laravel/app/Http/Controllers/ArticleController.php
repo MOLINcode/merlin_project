@@ -18,6 +18,10 @@ class ArticleController extends Controller
     {
         return view('article.index');
     }
+    public function indexInfo()
+    {
+        return view('article.indexInfo');
+    }
 
     /**
      * Show the form for creating a new resource.
