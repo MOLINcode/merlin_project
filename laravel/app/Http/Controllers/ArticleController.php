@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseController;
 
-class ArticleController extends Controller
+class ArticleController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('article.index');
+        return $this->view('article.index');
     }
     public function indexInfo()
     {
@@ -39,7 +39,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -73,7 +73,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update( $id)
     {
         //
     }

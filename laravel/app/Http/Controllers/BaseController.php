@@ -89,14 +89,18 @@ class BaseController extends Controller
      * @param string $spall
      * @return mixed
      */
-    protected function view($template, $spall = 'content')
+    protected function view($template, $spall = 'content',$flag=false)
     {
         $this->layout = View::make($this->layout);
         $this->layout->$spall   = view($template);
-        $this->layout->front_header = view('layouts.admin_common.head');
-        $this->layout->front_left = view('layouts.admin_common.left')->with(array(
-            'leftMenus' => UserMenuEnum::getLeftMenu(),
-        ));
+        if($flag){
+            $this->layout->front_header = view('layouts.front_common.head');
+        }else{
+            $this->layout->front_header = view('layouts.admin_common.head');
+            $this->layout->front_left = view('layouts.admin_common.left')->with(array(
+                'leftMenus' => UserMenuEnum::getLeftMenu(),
+            ));
+        }
         return $this->layout->$spall;
     }
 

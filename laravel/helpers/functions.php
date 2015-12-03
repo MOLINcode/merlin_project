@@ -239,19 +239,17 @@ if(!function_exists('treeList')){
                 echo "<li data-cate-id='".$v['cate_id']."'>";
                 echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
                 </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
-                '<img class="editCategory" src="/img/common/edit.png" alt="编辑">'.
-                '<img class="delCategory" src="/img/common/del.png" alt="删除">';
-
-
-
+                '<img class="editCategory" src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
+                '<img class="editCategory" src="/img/common/edit.png" title="编辑" alt="编辑">';
                 treeList($v['child']);
                 echo "</li>";
             } else {
                 echo "<li data-cate-id='".$v['cate_id']."'>";
                 echo '<span> <i class="fa fa-folder-open"> </i> '.$v['as_name'].'
                 </span><a data-cate_id="' . $v["cate_id"] . '"> ' . $v["cate_name"] . '</a>'.
-                '<img class="editCategory" src="/img/common/edit.png" alt="编辑">'.
-                '<img class="delCategory" src="/img/common/del.png" alt="删除">';
+                '<img class="editCategory" src="/img/common/icon_plus.png" title="添加子分类" alt="添加子分类">'.
+                '<img class="editCategory" src="/img/common/edit.png" title="编辑" alt="编辑">'.
+                '<img class="delCategory" src="/img/common/del.png" title="删除" alt="删除">';
                 echo "</li>";
             }
         }
