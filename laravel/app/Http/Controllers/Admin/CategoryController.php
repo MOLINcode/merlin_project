@@ -42,14 +42,17 @@ class CategoryController extends BaseController
 
         if($cate_id = $this->getParam('cate_id')){
             $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
+
             if($this->params['type'] == 'create'){
+                $obj->pid = $cateInfo->cate_id;
+                $obj->cate_name = $cateInfo->cate_name;
                 return $this->viewAjax('admin.category.createCategory')->with(
                     array(
-                        'pid' => $cateInfo->cate_id,
-                        'pName' =>$cateInfo->cate_name
+                        'cateInfo'  => $obj,
                     )
                 );
             }
+
             return $this->viewAjax('admin.category.createCategory')->with(
                 array(
                     'cateInfo' => $cateInfo

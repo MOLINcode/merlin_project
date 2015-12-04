@@ -16,6 +16,6 @@ Route::group(array('prefix' => '/admin'),function () {
     //ajax分类列表
     Route::post('/ajaxCategoryList','Admin\CategoryController@ajaxLoadList');
     //编辑分类
-    Route::get('/editCategory/{cate_id}','Admin\CategoryController@create');
+    Route::post('/editCategory/{cate_id}','Admin\CategoryController@create');
 
 });

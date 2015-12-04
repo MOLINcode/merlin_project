@@ -52,9 +52,10 @@
                 var cate_id = $(this).parent().data('cate_id');
                 var type = $(this).data('type');
                 var cate_name = $(this).siblings('a').html();
+                var data = {'cate_name':cate_name,'type':type}
                 console.log(cate_name);
                 url = '/admin/editCategory/'+cate_id;
-                T.restGet(url,{"type":type},function(){
+                T.ajaxLoad(url,'new_data_store',data,function(){
 
                 });
 
