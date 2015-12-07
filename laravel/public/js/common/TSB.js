@@ -4,12 +4,13 @@
  * 前端组件库
  */
  define(function (require, exports, module) {
+	var $ = jQuery = require('jquery');
 	var T;
     var TSB = require('TSB');
 	T = (function ($, window, document, undefined) {
 
-		var alert = function (msg, type,speed) {
-			TSB.modalAlert({status: type ? type : 'success', msg: msg,speed:speed});
+		var alert = function (msg, type) {
+			TSB.modalAlert({status: type ? type : 'success', msg: msg});
 		};
 
 		var restGet = function (url, data, success, error, type) {
@@ -121,9 +122,34 @@
 		}
 
 		var notFoundData = function(domId){
-			var html = '<div class="basic-main-left-div dash top_15" style="padding:50px; border:1px dashed #ccc;"><div class="text-center"><img src="/resource/img/not_found.png"></div><div class="text-center font-18" style="font-size:18px; line-height:40px">哎呀，啥都没有发现，怎么回事?</div> <div class="text-center"> 如果有任何问题，请<a href="">查看帮助</a>或联系我们</div>';
+			var html = '<div class="basic-main-left-div dash top_15" style="padding:50px; border:1px dashed #ccc;"><div class="text-center"><img src="/resource/img/not_found.png"></div><div class="text-center font-18" style="font-size:18px; line-height:40px">'+lang_tsb.not_found+'</div> <div class="text-center"> '+lang_tsb.any_question+'，<a href="/help/help_operation">'+lang_tsb.get_help+'</a>'+lang_tsb.get_phone+'</div>';
 			$('#'+domId).html(html);
 		}
+        var confirm=function(msg,ok,quxiao){
+            var opt = {
+                status: 'success',
+                msg: msg,
+                speed: 2000
+            };
+            if (opt.status == 'success') {
+                var alertIcon = '<i class="fa fa-check-circle" id="green"></i>';
+            } else {
+                var alertIcon = '<i class="fa fa-times-circle" id="red"></i>';
+            }
+            var alertHtml = $('<div class="modal-alert" style="display:none;height:100%;margin-top: -30px;padding-top: 100px"><div class="alert alert-' + opt.status + '">' + alertIcon + opt.msg + '</<div></br></br><input type="button" id="confirm" class="btn-blue " style="margin-left: 80px;border: none;border-radius: 4px;" value="'+lang_alert_page.confirm+'"/>     <input type="button" id="cancle" class="btn-blue center"  style="border: none;border-radius: 4px;margin-left: 40px" value="'+lang_alert_page.cancel+'"/></div></div>');
+
+            $(alertHtml).find("#confirm").click(function(e){
+                $(this).parent().parent().hide();
+                $.isFunction(ok) && ok(e);
+            })
+
+            $(alertHtml).find("#cancle").click(function(e){
+                $(this).parent().parent().hide();
+                $.isFunction(quxiao) && quxiao(e);
+            })
+
+            $(alertHtml).appendTo($('body')).fadeIn().delay(opt.speed);
+        }
 		return {
 			restGet: restGet,
 			restPost: restPost,
@@ -133,7 +159,8 @@
 			showLoading:showLoading,
 			showNoData:showNoData,
 			divRest:divReset,
-			notFoundData:notFoundData
+			notFoundData:notFoundData,
+            confirm:confirm
 		};
 	})(jQuery, window, document, undefined);
 	

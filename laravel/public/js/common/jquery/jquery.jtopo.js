@@ -134,7 +134,11 @@ define(function(require,exports,module){
             for (var i = 0, l = relations.length; i < l; i++) {
                 if (relations[i].throughput != '' && relations[i].response_time != '') {
                     newLink(topo_data.data_node[relations[i].start], topo_data.data_node[relations[i].end], relations[i].throughput + ',' + relations[i].response_time);
-                } else {
+                }else if(relations[i].throughput == '' && relations[i].response_time != ''){
+                    newLink(topo_data.data_node[relations[i].start], topo_data.data_node[relations[i].end], relations[i].response_time);
+                } else if(relations[i].throughput != '' && relations[i].response_time == ''){
+                    newLink(topo_data.data_node[relations[i].start], topo_data.data_node[relations[i].end], relations[i].throughput);
+                }else {
                     newLink(topo_data.data_node[relations[i].start], topo_data.data_node[relations[i].end]);
                 }
             }
@@ -145,7 +149,10 @@ define(function(require,exports,module){
             if (opt.except) {
                 for (var i = 0, l = opt.except.length; i < l; i++) {
                     var node = topo_data.data_node[opt.except[i]];
-                    node.showSelected = false; // 不显示选中矩形
+                    if(!$.isEmptyObject(node)){
+                        node.showSelected = false; // 不显示选中矩形
+                    }
+
                 }
             }
 

@@ -10,6 +10,7 @@ define(function (require, exports, module) {
             //数据驱动，@TODO支持自定义驱动
 
             if (opt.type instanceof Array) {
+
                 var driver = require('echartsDriverDataMixed');
                 //折线图  面积图  柱状图  雷达图
             } else {
@@ -28,15 +29,9 @@ define(function (require, exports, module) {
                         break
                     case 'radar':   //雷达图
                         var driver = require('echartsDriverDataRadar');
-                        break;
-                    case 'pieRing':
-                        var driver =require('echartsDriverDataPieRing');
-                        break;
-                    case 'nLine':
-                        var driver =require('echartsDriverDataNewLine');
-                        break;
-                    case 'scatter':
-                        var driver =require('echartsDriverDataScatter');
+                        break
+                    case 'scatter':   //散点图
+                        var driver = require('echartsDriverDataScatter');
                         break;
                     case 'line' :   //折线图
                     case 'area' :   //面积图
@@ -93,7 +88,7 @@ define(function (require, exports, module) {
                 instance.setOption({toolbox: {show: false}});
                 //绑定mouseenter事件
                 $(instance.domId).bind("mouseenter ", function (e) {
-                    instance.setOption({toolbox: {show: true}})
+                    instance.setOption({toolbox: {show: false}})
                 }).bind("mouseleave", function () {
                     instance.setOption({toolbox: {show: false}})
                 })
@@ -119,6 +114,8 @@ define(function (require, exports, module) {
                     if (oldInstance) {
                         block.unbind("mouseenter").unbind("mouseleave");
                         oldInstance.clear();
+                        $(chart).removeAttr('_echarts_instance_');
+                        delete oldInstance;
                     }
                     //参数或回调
                     var opt = setopt;
@@ -147,6 +144,11 @@ define(function (require, exports, module) {
                     //实例化
                     var instance = echarts.init($(chart)[0]);
 
+
+                    $(window).resize(function(){
+                        instance.resize();
+                    });
+
                     if($.isFunction(opt.setTheme)){
                         var callbackTheme = opt.setTheme(theme, instance,opt);
                         theme = $.extend({},theme,callbackTheme);
@@ -155,6 +157,7 @@ define(function (require, exports, module) {
                     if (!theme) {
                         throw new Error('没有获取到主题');
                     }
+
                     //设置主题
                     instance.setTheme(theme);
 
@@ -217,7 +220,6 @@ define(function (require, exports, module) {
                 }
             });
         };
-
 
         module.exports = $;
     }

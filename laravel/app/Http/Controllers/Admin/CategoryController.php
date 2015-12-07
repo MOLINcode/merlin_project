@@ -42,7 +42,6 @@ class CategoryController extends BaseController
 
         if($cate_id = $this->getParam('cate_id')){
             $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
-
             if($this->params['type'] == 'create'){
                 $obj->pid = $cateInfo->cate_id;
                 $obj->cate_name = $cateInfo->cate_name;

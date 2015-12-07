@@ -51,9 +51,8 @@
                 });
                 var cate_id = $(this).parent().data('cate_id');
                 var type = $(this).data('type');
-                var cate_name = $(this).siblings('a').html();
-                var data = {'cate_name':cate_name,'type':type}
-                console.log(cate_name);
+                var p_name = $(this).closest('.parentCat').html();
+                var data = {'p_name':p_name,'type':type}
                 url = '/admin/editCategory/'+cate_id;
                 T.ajaxLoad(url,'new_data_store',data,function(){
 

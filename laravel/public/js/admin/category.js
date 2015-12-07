@@ -14,6 +14,11 @@ define(function(require,exports,module){
 
         getCateList(data);
     }
+/*
+    $(document).delegate('.createTopCat','click',function(){
+        var createUrl = '/admin/category/create';
+        T.ajaxLoad('new_data_store',createUrl,{'pid':0});
+    })*/
 
 
     var getCateList = function(data){

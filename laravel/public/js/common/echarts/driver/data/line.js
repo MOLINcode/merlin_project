@@ -12,9 +12,6 @@ define(function (require, c, d) {
                     saveAsImage: {show: true, color: "#37b4b3"}
                 }
             },
-            grid: {
-                x2: '10%',
-            },
             xAxis: [],
             yAxis: []
         };
