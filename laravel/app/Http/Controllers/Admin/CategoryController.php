@@ -32,7 +32,7 @@ class CategoryController extends BaseController
     }
 
     /**
-     * 创建
+     * 创建或者编辑
      * @return mixed
      */
     public function create()
@@ -67,9 +67,7 @@ class CategoryController extends BaseController
         );
     }
 
-    public function edit(){
-
-    }
+   
     /**
      * 创建 编辑
      */

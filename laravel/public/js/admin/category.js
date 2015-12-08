@@ -6,14 +6,16 @@ define(function(require,exports,module){
     var T = require('T');
     var commonConf = require('commonConf');
     var data = {"page":1};
-    var init = function(){
-        $("#new_data_store").modal({
-            remote:'/admin/category/create',
-            show:false,
-        });
 
-        getCateList(data);
-    }
+
+
+    $(document).delegate('.createTopType','click',function(){
+        var createUrl = '/admin/category/create';
+        T.ajaxLoad(createUrl,'new_data_store',{'pid':0});
+        $("#new_data_store").modal();
+    })
+
+
 
 
     var getCateList = function(data){
@@ -22,9 +24,8 @@ define(function(require,exports,module){
 
         T.ajaxLoad(url,'ajaxCategoryList',data,function(){})
     }
+    getCateList(data);
 
-    //初始化方法
-    init();
     //导出的方法
     module.exports = {
         'getCateList': getCateList(data),
