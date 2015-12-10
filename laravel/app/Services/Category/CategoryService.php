@@ -49,12 +49,13 @@ class CategoryService extends BaseService
     }
 
     /**
-     * 创建分类
+     * 创建分类 or 编辑分类
      * @param $params
      * @return bool
      */
 
-    public function createCategory($params){
+    public function updateCategory($params){
+
         $oData = $this -> setRequestCategoryParams($params);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
         if(!$this->mCategory->insert($insetData)){

@@ -71,7 +71,7 @@
 @section('app_js')
     <script>
         seajs.use(['category','T'],function(category,T){
-            $(document).delegate('#saveCate','click',function(){
+            $(document).undelegate('#saveCate','click').delegate('#saveCate','click',function(){
                 var createUrl = '/admin/addCategory';
                 var postData = $("#addCategory").serialize();
                 console.log(postData);

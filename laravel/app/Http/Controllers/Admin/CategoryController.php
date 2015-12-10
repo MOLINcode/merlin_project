@@ -67,14 +67,14 @@ class CategoryController extends BaseController
         );
     }
 
-   
+
     /**
      * 创建 编辑
      */
     public function store()
     {
         $this->validatorError(Category::$aRole,Category::$aCode);
-        if(!CategoryService::instance()->createCategory($this->params)){
+        if(!CategoryService::instance()->updateCategory($this->params)){
             $this->rest->error('创建失败');
         }
         $this->rest->success('','','创建成功');
