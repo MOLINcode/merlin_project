@@ -46,7 +46,7 @@ define(function (require, exports, module) {
      * 触发：键盘按下时
      * 绑定元素：this
      */
-    $(document).delegate('[data-onkey]','keypress',function(event){
+    $('[data-onkey]').keypress(function(event){
         var keyCode = $(this).data('onkey');
 
         if(keyCode){
@@ -125,42 +125,6 @@ define(function (require, exports, module) {
             '</div></div>';
 
         $table.trigger('modal',option);
-        delete option.data.toggle;
-        if(option.url && option.target){
-            if(option.modal){
-                $('#'+option.target).html(option.html).modal();
-            }
-
-            T.ajaxLoad(option.url,option.target,option.data)
-        }
-
-    });
-
-    /**
-     *  列表弹窗事件
-     *  触发：列表td>a被点击时
-     *  绑定元素： table
-     */
-    $(document).delegate('div[data-toggle="modal"] a[data-toggle="modal"]','click',function(){
-        var a = $(this);
-        var option = {
-            data : $.extend({},a.data()),
-            target  : 'pop_modal',
-            url: a.data('url'),
-            title:'加载中...',
-            element:$(this),
-            html:'',
-            modal:'modal'
-
-        }
-        option.html =  '<div class="modal-dialog popup">' +
-            '<div class="modal-title">'       +
-            ' <button type="button" class="close" data-dismiss="modal"></button>' +
-            '<div class="modal-title">' +   option.title + '</div>' +
-            '<div class="loading"></div>' +
-            '</div></div>';
-
-        a.trigger('modal',option);
         delete option.data.toggle;
         if(option.url && option.target){
             if(option.modal){

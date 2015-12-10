@@ -15,8 +15,8 @@ seajs.config({
         echarts:'common/echarts/echarts-plain.js',
         jtopo:'common/jtopo-0.4.8-min.js',
 
-
-        //common公共的js
+		
+		//common公共的js
         jqueryTopoPlugin:'common/jquery/jquery.jtopo.js',
         jqueryTsbPlugin:'common/jquery/jquery-tsb-plugins.js',
         jqueryCodetreePlugin:'common/jquery/jquery-codetree.js',

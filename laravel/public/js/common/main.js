@@ -51,11 +51,8 @@ define(function (require, exports, module) {
 					var status = {
 						error:'danger'
 					};
-
 					var cls = $.isEmptyObject(status[opt.status]) ? opt.status : status[opt.status];
-
 					var alertHtml = '<div class="modal-alert"><div class="alert alert-' + cls + '">'  + opt.msg + '</div></div>';
-
 					$(alertHtml).appendTo($('body')).fadeIn().delay(opt.speed).fadeOut(function () {
 						$(this).remove()
 					});
@@ -82,13 +79,14 @@ define(function (require, exports, module) {
 					$(alertHtml).appendTo($('body')).fadeIn().delay(opt.speed);
 
 					$('#confirm').click(function(){
+						$('#close_channel_window').trigger('click');
 						T.restPost('/ajax/alert/template/remove',data,function(back){
 							dom.remove();
 							TSB.modalAlert({msg:back.msg});
 						},function(back){
 							TSB.modalAlert({msg:back.msg});
 						});
-						$('#cancle').trigger('click');
+						$('.modal-alert').remove();
 					});
 
 					$(document).delegate('#cancle','click',function(){
@@ -96,7 +94,6 @@ define(function (require, exports, module) {
 					});
 
 				},
-
 
 				/*jquery UI 滑块扩展*/
 				slider: function (sel, opt) {
@@ -145,21 +142,24 @@ define(function (require, exports, module) {
 
 						if (opt.value == undefined && opt.values == undefined) {
 							var input_target = $(this).attr('js-target-input');
+							var oForm = $(this).closest('form');
+							if (input_target.indexOf(',') > 1) {
+								var input_targets = input_target.split(',');
 
-							if (input_target) {
-								var oForm = $(this).closest('form');
+								var input_targets_0 = parseInt(oForm.find('input[name="' + input_targets[0] + '"]').val());
+								var input_targets_1 = parseInt(oForm.find('input[name="' + input_targets[1] + '"]').val());
+								opt.values = [input_targets_0, input_targets_1];
 
-								if (input_target.indexOf(',') > 1) {
-									var input_targets = input_target.split(',');
-									var input_targets_0 = parseInt(oForm.find('input[name="' + input_targets[0] + '"]').val());
-									var input_targets_1 = parseInt(oForm.find('input[name="' + input_targets[1] + '"]').val());
-									opt.values = [input_targets_0, input_targets_1];
-								} else {
-									opt.value = parseInt(oForm.find('input[name="' + input_target + '"]').val());
-								}
+							} else {
+								opt.value = parseInt(oForm.find('input[name="' + input_target + '"]').val());
 							}
 						}
+						if(opt.values){
+
+							console.log(JSON.stringify(opt));
+						}
 						$target.slider(opt);
+
 
 						if (opt.values != undefined) {
 							var rangeWidget = function () {
@@ -213,15 +213,11 @@ define(function (require, exports, module) {
 						var value;
 
 						var scale = new Array();
-						var scale_target = new Array();
 						$(this).closest('div').parent('div').find('.sacle').each(function (k) {
 							var _scale_value = $(this).attr('js-data-scale');
-							var _scale_target = $(this).html();
 							scale[k + 1] = _scale_value;
-							scale_target[k + 1] = _scale_target;
 							if (target_value == _scale_value) {
 								value = k + 1;
-								oForm.find('.js_data_' + target_input).text(_scale_target);
 							}
 						});
 
@@ -234,14 +230,14 @@ define(function (require, exports, module) {
 								if (target_input.indexOf(',') > 1) {
 									var input_targets = target_input.split(',');
 
-									oForm.find('.js_data_' + input_targets[0]).text(scale_target[ui.values[0]]);
+									oForm.find('.js_data_' + input_targets[0]).text(scale[ui.values[0]]);
 									oForm.find('input[name="' + input_targets[0] + '"]').val(scale[ui.values[0]]);
 
-									oForm.find('.js_data_' + input_targets[1]).text(scale_target[ui.values[1]]);
+									oForm.find('.js_data_' + input_targets[1]).text(scale[ui.values[1]]);
 									oForm.find('input[name="' + input_targets[1] + '"]').val(scale[ui.values[1]]);
 
 								} else {
-									oForm.find('.js_data_' + target_input).text(scale_target[ui.value]);
+									oForm.find('.js_data_' + target_input).text(scale[ui.value]);
 									oForm.find('input[name="' + target_input + '"]').val(scale[ui.value]);
 								}
 
@@ -300,6 +296,7 @@ define(function (require, exports, module) {
 
 									}
 									break;
+
 							}
 							if (lableName.substring(lableName.length - 2, lableName.length) != '[]') {
 								var js_label = oForm.find('.js_data_' + lableName);
@@ -433,17 +430,7 @@ define(function (require, exports, module) {
 
 							$('body').find(".location1,.location2").remove();
 					});
-				},
-
-                getSearchInputVal:function(dom){
-                    if(navigator.Actual_Name == 'Microsoft Internet Explorer' && parseInt(navigator.Actual_Version) == 9){
-                        if(dom.val() == dom.attr('placeholder')){
-                            return '';
-                        }
-                    }
-
-                    return dom.val();
-                }
+				}
 
 			};
 			return tsb;
@@ -473,112 +460,10 @@ define(function (require, exports, module) {
 		return format;
 	}
 
-    function browserinfo(){
-        var Browser_Name=navigator.appName;
-        var Browser_Version=parseFloat(navigator.appVersion);
-        var Browser_Agent=navigator.userAgent;
-        var Actual_Version,Actual_Name;
-        var is_IE=(Browser_Name=="Microsoft Internet Explorer");//判读是否为ie浏览器
-        var is_NN=(Browser_Name=="Netscape");//判断是否为netscape浏览器
-        var is_op=(Browser_Name=="Opera");//判断是否为Opera浏览器
-        if(is_NN){
-            //upper 5.0 need to be process,lower 5.0 return directly
-            if(Browser_Version>=5.0){
-                if(Browser_Agent.indexOf("Netscape")!=-1){
-                    var Split_Sign=Browser_Agent.lastIndexOf("/");
-                    var Version=Browser_Agent.lastIndexOf(" ");
-                    var Bname=Browser_Agent.substring(0,Split_Sign);
-                    var Split_sign2=Bname.lastIndexOf(" ");
-                    Actual_Version=Browser_Agent.substring(Split_Sign+1,Browser_Agent.length);
-                    Actual_Name=Bname.substring(Split_sign2+1,Bname.length);
-
-                }
-                if(Browser_Agent.indexOf("Firefox")!=-1){
-                    var Split_Sign=Browser_Agent.lastIndexOf("/");
-                    var Version=Browser_Agent.lastIndexOf(" ");
-                    Actual_Version=Browser_Agent.substring(Split_Sign+1,Browser_Agent.length);
-                    Actual_Name=Browser_Agent.substring(Version+1,Split_Sign);
-
-                }
-                if(Browser_Agent.indexOf("Safari")!=-1){
-                    if(Browser_Agent.indexOf("Chrome")!=-1){
-                        var Split_Sign=Browser_Agent.lastIndexOf(" ");
-                        var Version=Browser_Agent.substring(0,Split_Sign);;
-                        var Split_Sign2=Version.lastIndexOf("/");
-                        var Bname=Version.lastIndexOf(" ");
-                        Actual_Version=Version.substring(Split_Sign2+1,Version.length);
-                        Actual_Name=Version.substring(Bname+1,Split_Sign2);
-                    }
-                    else{
-                        var Split_Sign=Browser_Agent.lastIndexOf("/");
-                        var Version=Browser_Agent.substring(0,Split_Sign);;
-                        var Split_Sign2=Version.lastIndexOf("/");
-                        var Bname=Browser_Agent.lastIndexOf(" ");
-                        Actual_Version=Browser_Agent.substring(Split_Sign2+1,Bname);
-                        Actual_Name=Browser_Agent.substring(Bname+1,Split_Sign);
-
-                    }
-                }
-
-
-
-            }
-            else{
-                Actual_Version=Browser_Version;
-                Actual_Name=Browser_Name;
-            }
-        }
-        else if(is_IE){
-            var Version_Start=Browser_Agent.indexOf("MSIE");
-            var Version_End=Browser_Agent.indexOf(";",Version_Start);
-            Actual_Version=Browser_Agent.substring(Version_Start+5,Version_End)
-            Actual_Name=Browser_Name;
-
-            if(Browser_Agent.indexOf("Maxthon")!=-1||Browser_Agent.indexOf("MAXTHON")!=-1){
-                var mv=Browser_Agent.lastIndexOf(" ");
-                var mv1=Browser_Agent.substring(mv,Browser_Agent.length-1);
-                mv1="遨游版本:"+mv1;
-                Actual_Name+="(Maxthon)";
-                Actual_Version+=mv1;
-            }
-
-        }
-        else if(Browser_Agent.indexOf("Opera")!=-1){
-            Actual_Name="Opera";
-            var tempstart=Browser_Agent.indexOf("Opera");
-            var tempend=Browser_Agent.length;
-            Actual_Version=Browser_Version;
-        }
-        else{
-            Actual_Name="Unknown Navigator"
-            Actual_Version="Unknown Version"
-        }
-        /*------------------------------------------------------------------------------
-         --Your Can Create new properties of navigator(Acutal_Name and Actual_Version) --
-         --Userage:                                                                     --
-         --1,Call This Function.                                                        --
-         --2,use the property Like This:navigator.Actual_Name/navigator.Actual_Version;--
-         ------------------------------------------------------------------------------*/
-        navigator.Actual_Name=Actual_Name;
-        navigator.Actual_Version=Actual_Version;
-
-        /*---------------------------------------------------------------------------
-         --Or Made this a Class.                                                     --
-         --Userage:                                                                  --
-         --1,Create a instance of this object like this:var browser=new browserinfo;--
-         --2,user this instance:browser.Version/browser.Name;                        --
-         ---------------------------------------------------------------------------*/
-        this.Name=Actual_Name;
-        this.Version=Actual_Version;
-    }
-
-
-
+	
 	var init = function($){
 		$(function () {
 			TSB.initSwitchCheckBox();
-            browserinfo();
-//            console.log(navigator.Actual_Name,navigator.Actual_Version);
 		});
 	}
 	

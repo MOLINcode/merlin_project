@@ -1,6 +1,6 @@
 /* CSS Document */
 #user_center .center-bg {
-    background-image: url("/resource/img/admin/user-top.png");
+    background-image: url("/img/admin/user-top.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 142px;
@@ -70,7 +70,7 @@
     width: 120px;
 }
 .form-base .form-group .check-right {
-    background: transparent url("/resource/img/admin/check_right.png") no-repeat scroll center center;
+    background: transparent url("/img/admin/check_right.png") no-repeat scroll center center;
     display: inline;
     float: left;
     height: 34px;
@@ -81,7 +81,7 @@
     color: #f00;
 }
 .user-check-s-img {
-    background: transparent url("/resource/img/admin/user_check_success.png") no-repeat scroll center center;
+    background: transparent url("/img/admin/user_check_success.png") no-repeat scroll center center;
     height: 46px;
     margin: 0 auto;
     padding: 0;
@@ -117,7 +117,7 @@
     font-weight: bold;
 }
 .user-check-f-img {
-    background: rgba(0, 0, 0, 0) url("/resource/img/admin/user_check_fail.png") no-repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("/img/admin/user_check_fail.png") no-repeat scroll center center;
     height: 46px;
     margin: 0 auto;
     padding: 0;

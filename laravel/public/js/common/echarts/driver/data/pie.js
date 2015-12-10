@@ -1,7 +1,12 @@
 define(function (require, b, a) {
     a.exports = function (g, e) {
         var f = {
-            legend: {data: []},
+            legend: {
+                orient : 'vertical',
+                x : 'left',
+                y : 'top',
+                data: []
+            },
             series: [],
             tooltip: {show: true},
             toolbox: {
@@ -15,14 +20,13 @@ define(function (require, b, a) {
         };
         var h = [];
         for (var d in g.data) {
-            if($.isNumeric(d) && !$.isEmptyObject(g.data[d])){
+            if($.isNumeric(d)){
                 h.push(g.data[d]);
                 f.legend.data.push(g.data[d].name);
             }else{
                 f.legend.data.push(d);
                 h.push({name: d, value: g.data[d]})
             }
-
         }
         f.series[0] = {name: g.name || "", type: e.type, data: h};
         if(e.type == 'ring'){

@@ -8,7 +8,7 @@ define(function (require, c, d) {
         option.toolbox.show =false;
         option.legend.show =false;
 
-        if(!$.isEmptyObject(option.series[0])){
+        if(option.series[0].data.length > 1){
             var v0 = option.series[0].data[0];
 
             option.series[0].data[0] = {
