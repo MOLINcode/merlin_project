@@ -23,6 +23,7 @@ define(function(require,exports,module){
 
 
         function createTable(table,data,loop,max){
+            $(table).find('tbody').remove();
           var tbody = $('<tbody></tbody>');
             var ths = $(table).find('thead:last-of-type th');
 

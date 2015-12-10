@@ -7,11 +7,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title " id="new_data_store_myModalLabel">  创建 分类</h4>
+                <h4 class="modal-title " id="new_data_store_myModalLabel"> @if($cateInfo->cate_id) 编辑 @else 创建 @endif 分类</h4>
             </div>
             <form class="form-horizontal" id="addCategory" method="post"  onsubmit="return false">
                 <div class="modal-body">
                     <p class="explain">如果创建顶级分类则直接创建,或者选择指定分类下创建分类</p>
+
 
                     <div class="form-group">
                         <label for="name_data_store" class="col-sm-3 control-label">父级分类</label>
@@ -19,6 +20,7 @@
                             <input type="text" name="pid" value="" class="form-control" placeholder="名称">
                         </div>
                     </div>
+
 
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类名称</label>

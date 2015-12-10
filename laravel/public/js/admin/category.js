@@ -6,9 +6,7 @@ define(function(require,exports,module){
     var T = require('T');
     var commonConf = require('commonConf');
     var data = {"page":1};
-
-
-
+    
     $(document).delegate('.createTopType','click',function(){
         var createUrl = '/admin/category/create';
         T.ajaxLoad(createUrl,'new_data_store',{'pid':0});

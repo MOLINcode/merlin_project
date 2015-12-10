@@ -1,86 +1,88 @@
-/**
- * Created by merlin on 15-9-17.
- */
 define(function (require, c, d) {
     d.exports = function (s, v) {
+        var unitx = s.labels[0];
+        var unity = s.labels[1];
         var q = {
-            legend: {data: []},
-            series: [],
-            tooltip : {
-                trigger: 'axis',
-                axisPointer:{
-                    show: true,
-                    type : 'cross',
-                    lineStyle: {
-                        type : 'dashed',
-                        width : 1
-                    }
+            tooltip: {
+                trigger: 'item',
+                formatter : function (params) {
+                    return params.seriesName +'<br>'
+                        + params.value[0] + unitx+'&nbsp;&nbsp;&nbsp;&nbsp;'
+                        + params.value[1] + unity;
                 },
+                position: function(params){
+                    if(params[0]<100){
+                        params[0] = params[0]+100;
+                    }else{
+                        params[0] = params[0]-100;
+                    }
+                    if(params[1]<100){
+                        params[1] = params[1]+100;
+                    }else{
+                        params[1] = params[1]-100;
+                    }
+                    return [params[0],params[1]];
+                }
             },
-            calculable : true,
             toolbox: {
-                show : true,
-                color: ["#37b4b3", "#37b4b3", "#37b4b3", "#37b4b3"],
-                feature : {
-                    mark : {show: true},
-                    dataZoom : {show: true},
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
+                show: true,
+                color: ["#37b4b3"],
+                feature: {
+                    saveAsImage: {show: true, color: "#37b4b3"}
                 }
             },
-            grid: {
-                x: '9%',
-                y: '12%',
-                x2: '12%',
-                y2: '9%',
-                // borderWidth: 0,
+            dataZoom: {},
+            xAxis:[],
+            yAxis:[],
+            legend : {
+                data :[]
             },
-            xAxis: [],
-            yAxis: []
+            series:[]
         };
-
-        var a = [{type: "value"}];
-        var w = [{
-            type: "value",
-            axisLine: {
-                lineStyle: {
-                    color: '#dc143c'
+        q.grid = {
+            x2:80
+        }
+        q.xAxis = [
+            {
+                type : 'value',
+                scale:true,
+                axisLabel: {
+                    formatter : function(v) {
+                        return + v + unitx;
+                    }
                 }
             }
-
-        }];
-        var aSeries = [];
-
-
-        var t = 0;
-        for (var r in s.data) {
-            var u= s.data[r][0];
-            var i= s.data[r][1];
-            var j = s.data[r].type == undefined ? v.type : s.data[r].type;
-            var p = {normal: {}};
-            if (j == "area") {
-                j = "line";
-                p.normal.areaStyle = {type: "default"}
+        ];
+        q.yAxis =[
+            {
+                type : 'value',
+                scale:true,
+                position:'right',
+                axisLabel: {
+                    formatter : function(v) {
+                        return + v + unity;
+                    }
+                }
             }
-            var b = 0;
-            if (v.tooltip instanceof Array && t == 1 && v.tooltip.length > 1) {
-                b = 1
-            }
-            q.legend.data.push(u);
-            q.series.push({name: u, type: 'line', data: i});
-            t++
-        }
-        if (v.category == "y") {
-            q.xAxis = w;
-            q.yAxis = a
-        } else {
-            q.yAxis = w;
-            q.xAxis = a
+        ];
+        q.dataRange = {
+            min: 0,
+            max: 100,
+            y: 'center',
+            text:['高','低'],           // 文本，默认为数值文本
+            //color:['blue','yellow'],
+            calculable : true
+        };
+        for(var r in s.data){
+            var i = {
+                symbol:'circle',
+                color:'#37b4b3',
+                type:'scatter',
+                name: s.data[r].d,
+                data:[[s.data[r].a, s.data[r].b, s.data[r].c]]
+            };
+            q.series.push(i);
         }
         return q;
-
-
     }
 });

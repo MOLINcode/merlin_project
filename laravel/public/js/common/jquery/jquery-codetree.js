@@ -1,7 +1,6 @@
 define(function(require,exports,module) {
     var $ = require('jquery');
-    $.fn.makeCodeTree = function (data) {
-        console.log(data);
+    $.fn.makeCodeTree = function (data,data_type) {
         return this.each(function () {
             var $this = $(this),
                 maps = data.maps,
@@ -10,6 +9,9 @@ define(function(require,exports,module) {
                 var node = "";
                 for(var key in nodeData){
                     var info = maps[key];
+                    if(info == undefined){
+                        continue;
+                    }
 
 //                    node += '<li class="code-tree-node" data-node_id="'+parseInt((parseInt(info.wt)/1000) *100)+'">' +
 //                        '<div class="code-node-info" style="border-bottom: 1px solid #DFCCCC">' +
@@ -17,11 +19,11 @@ define(function(require,exports,module) {
                     if(info.exception == 1){
                         node += '<li class="code-tree-node" data-node_id="'+parseInt((parseInt(info.wt)/1000) *100)+'">' +
                         '<div class="code-node-info red" style="border-bottom: 1px solid #DFCCCC">' +
-                        '<div class="code-node-text">';
+                        '<div class="code-node-text" title="'+info.mn+'">';
                     }else{
                         node += '<li class="code-tree-node" data-node_id="'+parseInt((parseInt(info.wt)/1000) *100)+'">' +
                         '<div class="code-node-info" style="border-bottom: 1px solid #DFCCCC">' +
-                        '<div class="code-node-text">';
+                        '<div class="code-node-text" title="'+info.mn+'">';
                     }
                     if(nodeData[key] != 0){
                         node += '<span class="code-node-icon"></span>';
@@ -33,11 +35,24 @@ define(function(require,exports,module) {
 
                     var ct = parseInt(info.ct);
                     if(ct < 0) ct = '-';
-                    node += (info.mn + '</div>' +
-                    '<div class="code-node-type" style="border-left: 1px solid #DFCCCC;padding-left: 10px;">'+ parseInt((parseInt(info.cpu)/1000)*100)/100 +'</div>' +
-                    '<div class="code-node-exclusive" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' + parseInt((parseInt(info.wt)/1000) *100)/100+ '</div>' +
-                    '<div class="code-node-length" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' +ct+ '</div>' +
-                    '</div>');
+
+                    if(data_type == 'python'){
+                        node += (info.mn + '</div>' +
+                        '<div class="code-node-exclusive" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' + parseInt((parseInt(info.wt)/1000) *100)/100+ '</div>' +
+                        '<div class="code-node-length" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' +ct+ '</div>' +
+                        '</div>');
+
+                    }else{
+                        var cpu_time=(info.cpu==undefined?'-':parseInt((parseInt(info.cpu)/1000)*100)/100);
+                        var wt_time=(info.wt==undefined?'-':parseInt((parseInt(info.wt)/1000) *100)/100);
+                        node += (info.mn + '</div>' +
+                        '<div class="code-node-type" style="border-left: 1px solid #DFCCCC;padding-left: 10px;">'+ cpu_time +'</div>' +
+                        '<div class="code-node-exclusive" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' + wt_time+ '</div>' +
+                        '<div class="code-node-length" style="border-left: 1px solid #DFCCCC;padding-left: 10px">' +ct+ '</div>' +
+                        '</div>');
+
+                    }
+
 
                     /*if(info.hasOwnProperty('ps')){
                      node += '<div class="code-type-details">';
