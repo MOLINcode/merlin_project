@@ -73,21 +73,7 @@
 @section('app_js')
     <script>
         seajs.use(['category','T'],function(category,T){
-            $(document).undelegate('#saveCate','click').delegate('#saveCate','click',function(){
-                var createUrl = '/admin/addCategory';
-                var postData = $("#addCategory").serialize();
-                console.log(postData);
-                T.restPost(createUrl,postData,function(data){
-                    if(data.code == 1000){
-                        $("#new_data_store").modal('hide');
-                        T.alert(data.msg,'success');
-                        category.getCateList({'page':1});
-                    }else{
-                        T.alert(data.msg,'error');
-                    }
-                })
 
-            })
         });
     </script>
 @endsection

@@ -57,6 +57,7 @@ class CategoryService extends BaseService
     public function updateCategory($params){
 
         $oData = $this -> setRequestCategoryParams($params);
+        dd($oData);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
         if(!$this->mCategory->insert($insetData)){
             return false;

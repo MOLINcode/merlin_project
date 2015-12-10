@@ -32,14 +32,12 @@ class CategoryController extends BaseController
     }
 
     /**
-     * 创建或者编辑
+     * 创建或者编辑modal
      * @return mixed
      */
     public function create()
     {
-
         $obj = new VO_Category;
-
         if($cate_id = $this->getParam('cate_id')){
             $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
             if($this->params['type'] == 'create'){
@@ -68,7 +66,7 @@ class CategoryController extends BaseController
 
 
     /**
-     * 创建 编辑
+     * 创建 编辑 执行
      */
     public function store()
     {

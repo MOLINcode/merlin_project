@@ -2,6 +2,11 @@
 @section('app_css')
 {{App\ViewSpall\ResourceSpall::includeCSS('category')}}
 @endsection
+@section('app_js')
+    <script>
+        seajs.use('category');
+    </script>
+@endsection
 @section('content')
     <div class="main">
         <div class="main-title clearfix">
@@ -45,9 +50,5 @@
 
     </div>
 @endsection
-@section('app_js')
-    <script>
-        seajs.use('category');
-    </script>
-@endsection
+
 
