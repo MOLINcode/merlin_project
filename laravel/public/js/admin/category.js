@@ -7,10 +7,35 @@ define(function(require,exports,module){
     var commonConf = require('commonConf');
     var data = {"page":1};
 
+    //新建顶级分类
     $(document).delegate('.createTopType','click',function(){
-        var createUrl = '/admin/category/create';
+        var createUrl = '/admin/category/zCreate';
         T.ajaxLoad(createUrl,'new_data_store',{'pid':0});
         $("#new_data_store").modal();
+    })
+
+    //分类树新建编辑
+    $(document).delegate('li .addCategory,.editCategory','click',function(){
+        var cate_id = $(this).parent().data('cate_id');
+        var type = $(this).data('type');
+        var data = {};
+        var url = '';
+        switch (type)
+        {
+            case 'create':
+                url = '/admin/category/create/'+cate_id;
+                data = {'type':type}
+                break;
+            case 'edit':
+                url = '/admin/category/edit/'+cate_id;
+                data = {'type':type}
+        }
+
+
+        T.ajaxLoad(url,'new_data_store',data,function(){
+
+        });
+
     })
 
 
@@ -26,7 +51,13 @@ define(function(require,exports,module){
     //保存分类
     $(document).undelegate('#saveCate','click').delegate('#saveCate','click',function(){
         var createUrl = '/admin/addCategory';
-        var postData = $("#addCategory").serialize();
+        var postData = {};
+        postData.pid = $("input[name='pid']").data('pid');
+        postData.cate_name = $("input[name='cate_name']").val().trim();
+        postData.as_name = $("input[name='as_name']").val().trim();
+        postData.seo_key = $("input[name='seo_key']").val().trim();
+        postData.seo_title = $("input[name='seo_title']").val().trim();
+        postData.seo_desc = $("input[name='seo_desc']").val().trim();
         T.restPost(createUrl,postData,function(data){
             if(data.code == 1000){
                 $("#new_data_store").modal('hide');
@@ -39,47 +70,8 @@ define(function(require,exports,module){
 
     })
 
-    //分类树
-    var treeList = function () {
-        $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', '关闭节点');
-        $('.tree ul li:not(.parent_li)').find(' > span > i ').addClass('fa-leaf').removeClass('fa-folder-open');
-        $('.tree li a').attr('title', '修改分类');
-        $('.tree li a').on('click',function () {
-            alert('Node:'+$(this).attr('id')+'父节点：'+$(this).parent().parent().parent('ul>a'));
-        });
-        $('.tree li.parent_li > span').on('click', function (e) {
-            var children = $(this).parent('li.parent_li').find(' > ul > li');
-            if (children.is(":visible")) {
-                children.hide('fast');
-                $(this).attr('title', '展开节点').find(' > i').addClass('fa-plus-square').removeClass('fa-minus-square');
-            } else {
-                children.show('fast');
-                $(this).attr('title', '关闭节点').find(' > i').addClass('fa-minus-square').removeClass('fa-plus-square');
-            }
-            e.stopPropagation();
-        });
-    }
-    treeList();
 
-//分类树新建编辑
-    $(document).delegate('li .addCategory,.editCategory','click',function(){
-        $("#new_data_store").on("hidden.bs.modal", function() {
-            $(this).removeData("bs.modal");
-        }).modal();
-        var cate_id = $(this).parent().data('cate_id');
-        var type = $(this).data('type');
-        var p_name = $(this).closest('.parentCat').html();
-        var data = {'p_name':p_name,'type':type}
-        var url = '/admin/category/create';
-        if(type == 'edit'){
-            url = '/admin/editCategory/'+cate_id;
-        }
 
-        T.ajaxLoad(url,'new_data_store',data,function(){
-
-        });
-
-    })
 
     //导出的方法
     module.exports = {

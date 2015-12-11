@@ -64,7 +64,7 @@ $version = App\ViewSpall\ResourceSpall::getResourceVersion();
                 <span class="icon-bar"></span>
             </button>
             <a href="/" class="navbar-brand">
-                <img src="{{asset('/img/common/logo.png')}}">
+                {{--<img src="{{asset('/img/common/logo.png')}}">--}}
             </a>
         </div>
         <div id="web-navbar-collapse" class="collapse navbar-collapse">

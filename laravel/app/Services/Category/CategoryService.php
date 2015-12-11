@@ -55,9 +55,7 @@ class CategoryService extends BaseService
      */
 
     public function updateCategory($params){
-
         $oData = $this -> setRequestCategoryParams($params);
-        dd($oData);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
         if(!$this->mCategory->insert($insetData)){
             return false;
@@ -81,8 +79,21 @@ class CategoryService extends BaseService
 
     }
 
-    public function getCateInfoById($cate_id){
-       $row =  $this->mCategory->fetchRow($cate_id);
+    /**
+     * 通过id获取分类信息
+     * @param $cate_id
+     * @return array
+     */
+    public function getCateInfoById($cate_id,$name = false){
+        switch($name)
+        {
+            case true:
+                $row = $this->mCategory->fetchRow($cate_id);
+                break;
+            case false;
+                break;
+        }
         return $row;
     }
+
 }

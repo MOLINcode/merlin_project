@@ -35,33 +35,43 @@ class CategoryController extends BaseController
      * 创建或者编辑modal
      * @return mixed
      */
-    public function create()
+    public function createModal()
     {
         $obj = new VO_Category;
-        if($cate_id = $this->getParam('cate_id')){
-            $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
-            if($this->params['type'] == 'create'){
-                $obj->pid = $cateInfo->cate_id;
-                $obj->cate_name = $cateInfo->cate_name;
+        $type = $this->getParam('type');
+
+        switch ($type)
+        {
+            case 'zCreate':
+                $obj->pid = 0;
                 return $this->viewAjax('admin.category.createCategory')->with(
-                    array(
-                        'cateInfo'  => $obj,
-                    )
+                        array(
+                                'cateInfo'  => $obj,
+                                'p_name'  => '顶级分类',
+                        )
                 );
-            }
+                break;
+            case 'create':
+                $pid = $this->getParam('cate_id');
+                $cateInfo = CategoryService::instance()->getCateInfoById($pid);
+                return $this->viewAjax('admin.category.createCategory')->with(
+                        array(
+                                'p_name'  => $cateInfo->cate_name,
+                        )
+                );
+                break;
+            case 'edit':
+                $cate_id = $this->getParam('cate_id');
+                $cateInfo = CategoryService::instance()->getCateInfoById($cate_id,true);
 
-            return $this->viewAjax('admin.category.createCategory')->with(
-                array(
-                    'cateInfo' => $cateInfo
-                )
-            );
+                return $this->viewAjax('admin.category.createCategory')->with(
+                        array(
+                                'cateInfo'  => $cateInfo,
 
+                        )
+                );
+                break;
         }
-        return $this->viewAjax('admin.category.createCategory')->with(
-             array(
-                'cateInfo'  => $obj,
-             )
-        );
     }
 
 
@@ -72,9 +82,9 @@ class CategoryController extends BaseController
     {
         $this->validatorError(Category::$aRole,Category::$aCode);
         if(!CategoryService::instance()->updateCategory($this->params)){
-            $this->rest->error('创建失败');
+            $this->rest->error('操作失败');
         }
-        $this->rest->success('','','创建成功');
+        $this->rest->success('','','操作成功');
 
     }
 
