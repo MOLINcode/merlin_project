@@ -35,11 +35,10 @@ class CategoryController extends BaseController
      * 创建或者编辑modal
      * @return mixed
      */
-    public function createModal()
+    public function create()
     {
         $obj = new VO_Category;
         $type = $this->getParam('type');
-
         switch ($type)
         {
             case 'zCreate':
@@ -52,21 +51,25 @@ class CategoryController extends BaseController
                 );
                 break;
             case 'create':
-                $pid = $this->getParam('cate_id');
+                $pid = $this->params['cate_id'];
                 $cateInfo = CategoryService::instance()->getCateInfoById($pid);
+                $obj->pid = $pid;
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
                                 'p_name'  => $cateInfo->cate_name,
+                                'cateInfo'  => $obj,
                         )
                 );
                 break;
             case 'edit':
-                $cate_id = $this->getParam('cate_id');
-                $cateInfo = CategoryService::instance()->getCateInfoById($cate_id,true);
 
+                $cate_id = $this->getParam('cate_id');
+                $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
+                $oData = CategoryService::instance()->getCateInfoById($cateInfo->pid);
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
                                 'cateInfo'  => $cateInfo,
+                                'p_name' =>$oData->cate_name,
 
                         )
                 );

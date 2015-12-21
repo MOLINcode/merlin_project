@@ -57,9 +57,18 @@ class CategoryService extends BaseService
     public function updateCategory($params){
         $oData = $this -> setRequestCategoryParams($params);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
-        if(!$this->mCategory->insert($insetData)){
-            return false;
+        if($params['cate_id']){
+            unset($insetData->created_at);
+            if($this->mCategory->baseUpdate($insetData,$params['cate_id'])){
+                return false;
+            }
+        }else{
+            if(!$this->mCategory->insert($insetData)){
+                return false;
+            }
         }
+
+
         return true;
 
     }
@@ -84,16 +93,23 @@ class CategoryService extends BaseService
      * @param $cate_id
      * @return array
      */
-    public function getCateInfoById($cate_id,$name = false){
-        switch($name)
-        {
-            case true:
-                $row = $this->mCategory->fetchRow($cate_id);
-                break;
-            case false;
-                break;
-        }
+    public function getCateInfoById($cate_id){
+
+        $row = $this->mCategory->fetchRow($cate_id);
         return $row;
+    }
+
+    /**
+     * 获取全部分类
+     * @return array|bool
+     */
+    public function getAllCate(){
+        $this->mCategory->setSelect(array('cate_id','cate_name'));
+        if(!$data = $this->mCategory->fetchAll()){
+            return false;
+        }
+        $this->mCategory->removeSelect();
+        return $data;
     }
 
 }

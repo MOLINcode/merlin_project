@@ -9,10 +9,13 @@
 Route::group(array('prefix' => '/admin'),function () {
     //分类列表
     Route::get('/category', 'Admin\CategoryController@index');
-    //创建分类
-    Route::get('/category/{type}/{cate_id?}','Admin\CategoryController@createModal');
-    //ajax分类列表
-    Route::post('/ajaxCategoryList','Admin\CategoryController@ajaxLoadList');
+    //创建分类页
+    Route::post('/category/create','Admin\CategoryController@create');
     //添加分类
     Route::post('/addCategory','Admin\CategoryController@store');
+    //ajax分类列表
+    Route::post('/ajaxCategoryList','Admin\CategoryController@ajaxLoadList');
+    //编辑分类
+    Route::post('/editCategory/{cate_id}','Admin\CategoryController@create');
+
 });

@@ -9,7 +9,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title " id="new_data_store_myModalLabel"> @if($cateInfo->cate_id) 编辑 @else 创建 @endif 分类</h4>
             </div>
-            <div class="form-horizontal">
+            <div class="form-horizontal" id="addCategory">
                 <div class="modal-body">
                     <p class="explain">如果创建顶级分类则直接创建,或者选择指定分类下创建分类</p>
 
@@ -17,7 +17,13 @@
                     <div class="form-group">
                         <label for="name_data_store" class="col-sm-3 control-label">父级分类</label>
                         <div class="col-sm-7">
-                            <input type="text" name="pid" data-pid="@if($cateInfo->pid){{$cateInfo->pid}}@else0@end" value="@if($cateInfo->cate_name) {{$cateInfo->cate_name}}@else 顶级分类 @endif" class="form-control" placeholder="名称" disabled>
+                            @if(!$cateInfo->cate_id)
+                                <input type="text" name="pid" data-cate_pid = "{{$cateInfo->pid}}" value="{{$p_name}}" class="form-control" placeholder="名称" disabled>
+                                @else
+                                <select name="" id="">
+                                    <opertion></opertion>
+                                </select>
+                            @endif
                         </div>
                     </div>
 
@@ -53,9 +59,7 @@
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">SEO描述</label>
                         <div class="col-sm-7">
-                            <textarea id="" class="form-control" name="seo_desc" rows="5">
-                                {{$cateInfo->seo_desc}}
-                            </textarea>
+                            <textarea id="" class="form-control" name="seo_desc" rows="5">{{$cateInfo->seo_desc}}</textarea>
                         </div>
                     </div>
 
@@ -68,5 +72,13 @@
 
         </div>
     </div>
+@endsection
+
+@section('app_js')
+    <script>
+        seajs.use(['category','T'],function(category,T){
+
+        });
+    </script>
 @endsection
 
