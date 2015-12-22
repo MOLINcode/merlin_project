@@ -27,12 +27,19 @@ define(function(require,exports,module){
     $(document).undelegate('#saveCate','click').delegate('#saveCate','click',function(){
         var createUrl = '/admin/addCategory';
         var postData = {};
-        postData.cate_name = $("input[name = 'cate_name']").val();
-        postData.as_name = $("input[name = 'as_name']").val();
-        postData.seo_key = $("input[name = 'seo_key']").val();
-        postData.seo_title = $("input[name = 'seo_title']").val();
-        postData.seo_desc = $("textarea[name = 'seo_desc']").html();
+        postData.cate_id = '';
+        postData.cate_name = $("input[name = 'cate_name']").val().trim();
+        postData.as_name = $("input[name = 'as_name']").val().trim();
+        postData.seo_key = $("input[name = 'seo_key']").val().trim();
+        postData.seo_title = $("input[name = 'seo_title']").val().trim();
+        postData.seo_desc = $("textarea[name = 'seo_desc']").html().trim();
         postData.pid = $("input[name = 'pid']").data('cate_pid');
+
+        if($("input[name='cate_name']").data('cate_id')){
+            postData.cate_id = $("input[name='cate_name']").data('cate_id');
+            postData.pid = $("select[name = 'pid']").val();
+        }
+
         T.restPost(createUrl,postData,function(data){
             if(data.code == 1000){
                 $("#new_data_store").modal('hide');
@@ -41,6 +48,8 @@ define(function(require,exports,module){
             }else{
                 T.alert(data.msg,'error');
             }
+        },function(data){
+            T.alert(data.msg,'error');
         })
 
     })
@@ -78,11 +87,21 @@ define(function(require,exports,module){
         if(type == 'edit'){
             url = '/admin/editCategory/'+cate_id;
         }
+        T.ajaxLoad(url,'new_data_store',data,function(){});
 
-        T.ajaxLoad(url,'new_data_store',data,function(){
+    })
 
-        });
+    //分类删除
+    $(document).delegate('li .delCategory','click',function(){
+        var cate_id = $(this).parent().data('cate_id');
+        var delUrl = '/admin/delCategory/'+cate_id;
 
+        T.Confirm('确定删除吗？',function(){
+            T.restPost(delUrl,{'flag':1},function(retu){
+                getCateList(data);
+                T.alert(retu.msg);
+            })
+        })
     })
 
     //导出的方法

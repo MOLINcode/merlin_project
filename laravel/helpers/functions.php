@@ -192,13 +192,13 @@ if (!function_exists('tree')) {
     {
         $data = array();
         foreach ($model as $k => $v) {
-            $v = get_object_vars($v);
+            $v = (array)$v;
+            $v['html'] = '';
             if ($v['pid'] == $parentId) {
                 if ($level != 0) {
                     $v['html'] = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;', $level);
                     $v['html'] .= '|';
                 }
-                dd($v);
                 $v['html'] .= str_repeat($html, $level);
                 $data[] = $v;
                 $data = array_merge($data, tree($model, $v['cate_id'], $level + 1));

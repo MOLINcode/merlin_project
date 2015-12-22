@@ -62,8 +62,6 @@ class CategoryController extends BaseController
                 );
                 break;
             case 'edit':
-
-                dd(CategoryService::instance()->getAllCate());
                 $cate_id = $this->getParam('cate_id');
                 $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
                 $p_name = '顶级分类';
@@ -74,8 +72,10 @@ class CategoryController extends BaseController
 
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
-                                'cateInfo'  => $cateInfo,
-                                'p_name' =>$p_name,
+                            'cateInfo'  => $cateInfo,
+                            'p_name' =>$p_name,
+                            'all_cate' => CategoryService::instance()->getAllCate(),
+
 
                         )
                 );
@@ -94,6 +94,16 @@ class CategoryController extends BaseController
             $this->rest->error('操作失败');
         }
         $this->rest->success('','','操作成功');
+
+    }
+
+    public  function delete()
+    {
+        $cate_id = $this->getParam('cate_id');
+        if(!CategoryService::instance()->delete($cate_id)){
+            $this->rest->error('删除失败');
+        }
+        $this->rest->success('','','删除成功');
 
     }
 

@@ -58,8 +58,8 @@ class CategoryService extends BaseService
         $oData = $this -> setRequestCategoryParams($params);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
         if(isset($params['cate_id']) && $params['cate_id'] ){
-            unset($insetData->created_at);
-            if($this->mCategory->baseUpdate($insetData,$params['cate_id'])){
+            unset($insetData['created_at']);
+            if(!$this->mCategory->baseUpdate($insetData,$params['cate_id'])){
                 return false;
             }
         }else{
@@ -109,11 +109,20 @@ class CategoryService extends BaseService
         );
         $data = $this->mCategory->fetchAll();
         $treeData = tree($data);
-        dd($treeData);
-        foreach ($data as $k => $v) {
-            $treeData[$v['cate_id']] = $v['html'] . $v['cate_name'];
+        foreach ($treeData as $k => $v) {
+            $catData[$v['cate_id']] = $v['html'] . $v['cate_name'];
         }
         return $catData;
+    }
+
+    public function delete($cate_id){
+        $aData = array(
+            'cate_id' => $cate_id,
+        );
+        if(!$this->mCategory->baseDelete($aData)){
+            return false;
+        }
+        return true;
     }
 
 

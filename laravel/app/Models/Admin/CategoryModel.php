@@ -13,7 +13,7 @@ class CategoryModel extends BaseModel
     {
         return array(
             'cate_name' => $request->cate_name,
-            'as_name' => $request->cate_name,
+            'as_name' => $request->as_name,
             'pid'  => $request->pid,
             'seo_key' => $request->seo_key,
             'seo_title' => $request->seo_title,

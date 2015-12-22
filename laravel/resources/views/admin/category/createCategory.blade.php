@@ -19,9 +19,15 @@
                         <div class="col-sm-7">
                             @if(!$cateInfo->cate_id)
                                 <input type="text" name="pid" data-cate_pid = "{{$cateInfo->pid}}" value="{{$p_name}}" class="form-control" placeholder="名称" disabled>
-                                @else
-                                <select name="" id="">
-                                    <opertion></opertion>
+                            @else
+                                <select name="pid"  class="form-control">
+                                    @foreach($all_cate as $k=>$v)
+                                        @if($k == $cateInfo->pid)
+                                            <option value="{{$k}}" style="padding:3px;" selected>{{$v}}</option>
+                                        @else
+                                            <option value="{{$k}}" style="padding:3px;">{{$v}}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             @endif
                         </div>
@@ -31,7 +37,7 @@
                     <div class="form-group clearfix">
                         <label for="choice_file" class="col-sm-3 control-label">分类名称</label>
                         <div class="col-sm-7">
-                           <input type="text" name="cate_name" value="{{$cateInfo->cate_name}}" class="form-control" placeholder="名称">
+                           <input type="text" name="cate_name" value="{{$cateInfo->cate_name}}" @if($cateInfo->cate_id)data-cate_id="{{$cateInfo->cate_id}}"@endif class="form-control" placeholder="名称">
                         </div>
                     </div>
 
