@@ -63,13 +63,19 @@ class CategoryController extends BaseController
                 break;
             case 'edit':
 
+                dd(CategoryService::instance()->getAllCate());
                 $cate_id = $this->getParam('cate_id');
                 $cateInfo = CategoryService::instance()->getCateInfoById($cate_id);
-                $oData = CategoryService::instance()->getCateInfoById($cateInfo->pid);
+                $p_name = '顶级分类';
+                if($cateInfo->pid){
+                    $oData = CategoryService::instance()->getCateInfoById($cateInfo->pid);
+                    $p_name = $oData->cate_name;
+                }
+
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
                                 'cateInfo'  => $cateInfo,
-                                'p_name' =>$oData->cate_name,
+                                'p_name' =>$p_name,
 
                         )
                 );

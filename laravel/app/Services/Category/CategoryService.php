@@ -57,7 +57,7 @@ class CategoryService extends BaseService
     public function updateCategory($params){
         $oData = $this -> setRequestCategoryParams($params);
         $insetData = $this->mCategory->mkInfoForInsert($oData);
-        if($params['cate_id']){
+        if(isset($params['cate_id']) && $params['cate_id'] ){
             unset($insetData->created_at);
             if($this->mCategory->baseUpdate($insetData,$params['cate_id'])){
                 return false;
@@ -100,16 +100,25 @@ class CategoryService extends BaseService
     }
 
     /**
-     * 获取全部分类
+     * 获取分类
      * @return array|bool
      */
     public function getAllCate(){
-        $this->mCategory->setSelect(array('cate_id','cate_name'));
-        if(!$data = $this->mCategory->fetchAll()){
-            return false;
+        $catData = array(
+            '0' => '顶级分类'
+        );
+        $data = $this->mCategory->fetchAll();
+        $treeData = tree($data);
+        dd($treeData);
+        foreach ($data as $k => $v) {
+            $treeData[$v['cate_id']] = $v['html'] . $v['cate_name'];
         }
-        $this->mCategory->removeSelect();
-        return $data;
+        return $catData;
     }
+
+
+
+
+
 
 }
