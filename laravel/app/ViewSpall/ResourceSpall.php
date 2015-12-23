@@ -68,7 +68,7 @@ class ResourceSpall
             //ueditor js
             'ueditor' => array(
                 'ueditor/ueditor.config.js',
-                'ueditor/ueditor.all.min.js'
+                'ueditor/ueditor.all.js'
             ),
 
             //注册页面的js

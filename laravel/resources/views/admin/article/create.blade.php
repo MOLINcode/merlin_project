@@ -3,7 +3,6 @@
     {{App\ViewSpall\ResourceSpall::includeCSS('article')}}
 @endsection
 @section('app_js')
-    {{App\ViewSpall\ResourceSpall::includeJS('ueditor')}}
     <script>
         seajs.use('article');
     </script>
@@ -92,9 +91,11 @@
                         <div class="form-horizontal">
 
                             <div class="clearfix editor">
-                                <div class="col-sm-10 col-sm-offset-1" style="height:400px">
-                                    @include('editor::head')
-                                    {!! Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']) !!}
+
+                                <div class="col-sm-10 col-sm-offset-1" style="height:100px">
+                                    {{--@include('editor::head')--}}
+                                    {{--{!! Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']) !!}--}}
+                                    <!-- 实例化编辑器 -->
                                 </div>
 
                             </div>
@@ -103,7 +104,7 @@
                 </div>
 
             </div>
-            <div class="over clearfix" style="text-align: center;padding: 200px 0 0 0">
+            <div class="over clearfix" style="text-align: center;padding: 200px 0 50px 0">
                 <a href="javascript:void(0);">
                     <button class="btn btn-default" style="margin-right:2.5%">取消</button>
                     <button class="btn btn-noicon btn-green">保存</button>
