@@ -53,7 +53,8 @@ $version = App\ViewSpall\ResourceSpall::getResourceVersion();
     }
     ?>
 @endsection
-    @section('front_header')
+
+@section('front_header')
             <!-- header start -->
     <div class="navbar navbar-fixed-top web-navbar-top">
         <div class="navbar-header">
@@ -68,7 +69,7 @@ $version = App\ViewSpall\ResourceSpall::getResourceVersion();
             </a>
         </div>
         <div id="web-navbar-collapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
+            {{--<ul class="nav navbar-nav navbar-right">
                 <li>
                     <a class="pdtop-20" href="#" target="_blank">
                         <img src="{{asset('/img/common/help.png')}}" alt="帮助中心"></a>
@@ -82,12 +83,33 @@ $version = App\ViewSpall\ResourceSpall::getResourceVersion();
                 <li>
                     <a href="/signin_out" title="退出系统" onclick="javascript:return confirm('{{Lang::get('common.quit_alert')}}')"><img src="{{asset('/img/exit.png')}}" alt="exit"></a>
                 </li>
-            </ul>
+            </ul>--}}
         </div>
     </div>
     {{--//用户中心--}}
     <div id="user_center" class="modal"></div>
 @endsection
+
+
+@section('front_left')
+    <div class="sidebar">
+        <ul>
+            @foreach(\App\Constants\UserMenuEnum::getLeftMenu() as $menu)
+                <li @if($menu['active']) class="active" @endif>
+                    <a class="{{$menu['icon']}}" href="{{$menu['url']}}">
+                        <table>
+                            <tr>
+                                <td>
+                                    {{$menu['label']}}<br>
+                                </td>
+                            </tr>
+                        </table>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+@stop
 
 <html>
 <head>

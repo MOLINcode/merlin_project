@@ -13,4 +13,12 @@ use App\Http\Controllers\BaseController;
 class ArticleController extends BaseController
 {
 
+    public function index(){
+        return $this->view('admin.article.index');
+    }
+
+
+    public function createShow(){
+        return $this->view('admin.article.create');
+    }
 }

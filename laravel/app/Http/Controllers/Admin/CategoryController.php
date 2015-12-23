@@ -39,14 +39,16 @@ class CategoryController extends BaseController
     {
         $obj = new VO_Category;
         $type = $this->getParam('type');
+        $all_cate = CategoryService::instance()->getAllCate();
         switch ($type)
         {
             case 'zCreate':
                 $obj->pid = 0;
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
-                                'cateInfo'  => $obj,
-                                'p_name'  => '顶级分类',
+                            'cateInfo'  => $obj,
+                            'p_name'  => '顶级分类',
+                            'all_cate' => $all_cate,
                         )
                 );
                 break;
@@ -56,8 +58,9 @@ class CategoryController extends BaseController
                 $obj->pid = $pid;
                 return $this->viewAjax('admin.category.createCategory')->with(
                         array(
-                                'p_name'  => $cateInfo->cate_name,
-                                'cateInfo'  => $obj,
+                            'p_name'  => $cateInfo->cate_name,
+                            'cateInfo'  => $obj,
+                            'all_cate' => $all_cate,
                         )
                 );
                 break;
@@ -74,7 +77,7 @@ class CategoryController extends BaseController
                         array(
                             'cateInfo'  => $cateInfo,
                             'p_name' =>$p_name,
-                            'all_cate' => CategoryService::instance()->getAllCate(),
+                            'all_cate' => $all_cate,
 
 
                         )
@@ -94,10 +97,12 @@ class CategoryController extends BaseController
             $this->rest->error('操作失败');
         }
         $this->rest->success('','','操作成功');
-
     }
 
-    public  function delete()
+    /**
+     * 删除分类
+     */
+    public function delete()
     {
         $cate_id = $this->getParam('cate_id');
         if(!CategoryService::instance()->delete($cate_id)){

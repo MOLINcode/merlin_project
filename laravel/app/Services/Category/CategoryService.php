@@ -115,6 +115,11 @@ class CategoryService extends BaseService
         return $catData;
     }
 
+    /**
+     * 删除分类
+     * @param $cate_id
+     * @return bool
+     */
     public function delete($cate_id){
         $aData = array(
             'cate_id' => $cate_id,

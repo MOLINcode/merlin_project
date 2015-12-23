@@ -30,11 +30,7 @@ class ResourceSpall
 
             //文章
             'article' => array(
-                'home/article/base.css',
-                'home/article/index.css',
-                'home/article/media.css',
-                'home/article/about.css',
-                'home/article/style.css',
+                'admin/article.css',
             ),
         );
 

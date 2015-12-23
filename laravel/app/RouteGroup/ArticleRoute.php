@@ -11,6 +11,7 @@ Route::get('/','ArticleController@index');
 
 //文章
 Route::group(array('prefix' => '/article'),function () {
-    Route::get('/index', 'ArticleController@index');
-    Route::get('/indexInfo', 'ArticleController@indexInfo');
+
+
+
 });

@@ -10,34 +10,35 @@ class UserMenuEnum extends MenuEnum
     /**
      * 分组名称
      */
-    const GROUP_USERCENTER  = 'userCenter';     //用户中心
-    const GROUP_TEST_CASE   = 'testCase';       //测试任务
+    const GROUP_CATEGORY  = 'category';     //用户中心
+    const GROUP_ARTICLE   = 'article';     //用户中心
+
+   /* const GROUP_TEST_CASE   = 'testCase';       //测试任务
     const GROUP_TASK_TPL    = 'taskTpl';        //测试模板
     const GROUP_TEST_SCENE  = 'testScene';      //测试场景
     const GROUP_TEST_DATA   = 'testData';       //数据仓库
-    const GROUP_SYSTEM      = 'system';         //系统设置
+    const GROUP_SYSTEM      = 'system';         //系统设置*/
 
     private static function TsbLeftMenus()
     {
         $TsbLeftMenus = array(
             array(
-                self::LABEL => '测试模板',
+                self::LABEL => '分类管理',
                 self::ICON => 'test',
-                self::URL => '/taskTpl/index',
-                self::AUTH => AuthEnum::VIEW_TASK_TPL,
-                self::GROUP => self::GROUP_TASK_TPL,
+                self::URL => '/admin/category',
+//                self::AUTH => AuthEnum::VIEW_TASK_TPL,
+                self::GROUP => self::GROUP_CATEGORY,
 
             ),
             array(
-                self::LABEL => Lang::get('common.test_case'),
+                self::LABEL => '文章管理',
                 self::ICON => 'test',
-                self::URL => '/testCase/list',
-                self::AUTH => AuthEnum::VIEW_TEST_CASE,
-                self::GROUP => self::GROUP_TEST_CASE,
-
+                self::URL => '/admin/article',
+//                self::AUTH => AuthEnum::VIEW_TEST_CASE,
+                self::GROUP => self::GROUP_ARTICLE,
 
             ),
-            array(
+            /*array(
                 self::LABEL => Lang::get('common.test_scene'),
                 self::ICON => 'scene',
                 self::URL => '/testScene/list',
@@ -60,7 +61,7 @@ class UserMenuEnum extends MenuEnum
                 self::URL => '/user/user_list',
                 self::AUTH => AuthEnum::MODIFY_SYSTEM,
                 self::GROUP => self::GROUP_SYSTEM,
-            ),
+            ),*/
         );
         return $TsbLeftMenus;
     }
@@ -81,7 +82,7 @@ class UserMenuEnum extends MenuEnum
             if (array_key_exists(self::GROUP, $menu) && $menu[self::GROUP] == self::getCurrentActions('group')) {
                 $menu[self::ACTIVE] = true;
             }
-            $menu[self::LABEL] = Lang::get($menu[self::LABEL]);
+//            $menu[self::LABEL] = Lang::get($menu[self::LABEL]);
         }
 
 
@@ -96,10 +97,10 @@ class UserMenuEnum extends MenuEnum
      */
     public static function getMenus(array $menus, $activeKey = ''){
         foreach($menus as $key => &$menu){
-            if ((array_key_exists(self::AUTH, $menu) && !AuthService::Auth($menu[self::AUTH])) || (array_key_exists('hide',$menu))) {
+            /*if ((array_key_exists(self::AUTH, $menu) && !AuthService::Auth($menu[self::AUTH])) || (array_key_exists('hide',$menu))) {
                 unset($menus[$key]);
                 continue;
-            }
+            }*/
             $menu[self::ACTIVE] = false;
             if($key == $activeKey){
                 $menu[self::ACTIVE] = true;

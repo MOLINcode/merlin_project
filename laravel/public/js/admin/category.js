@@ -77,9 +77,6 @@ define(function(require,exports,module){
 
 //分类树新建编辑
     $(document).delegate('li .addCategory,.editCategory','click',function(){
-        $("#new_data_store").on("hidden.bs.modal", function() {
-            $(this).removeData("bs.modal");
-        }).modal();
         var cate_id = $(this).parent().data('cate_id');
         var type = $(this).data('type');
         var data = {'type':type,'cate_id':cate_id};
@@ -88,6 +85,7 @@ define(function(require,exports,module){
             url = '/admin/editCategory/'+cate_id;
         }
         T.ajaxLoad(url,'new_data_store',data,function(){});
+        $("#new_data_store").modal();
 
     })
 
@@ -95,13 +93,13 @@ define(function(require,exports,module){
     $(document).delegate('li .delCategory','click',function(){
         var cate_id = $(this).parent().data('cate_id');
         var delUrl = '/admin/delCategory/'+cate_id;
-
         T.Confirm('确定删除吗？',function(){
-            T.restPost(delUrl,{'flag':1},function(retu){
-                getCateList(data);
-                T.alert(retu.msg);
+            T.restPost(delUrl,{'flag':1},function(data){
+                getCateList({'page':1});
+                T.alert(data.msg);
             })
         })
+
     })
 
     //导出的方法

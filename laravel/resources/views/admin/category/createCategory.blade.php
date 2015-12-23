@@ -17,19 +17,17 @@
                     <div class="form-group">
                         <label for="name_data_store" class="col-sm-3 control-label">父级分类</label>
                         <div class="col-sm-7">
-                            @if(!$cateInfo->cate_id)
-                                <input type="text" name="pid" data-cate_pid = "{{$cateInfo->pid}}" value="{{$p_name}}" class="form-control" placeholder="名称" disabled>
-                            @else
-                                <select name="pid"  class="form-control">
-                                    @foreach($all_cate as $k=>$v)
-                                        @if($k == $cateInfo->pid)
-                                            <option value="{{$k}}" style="padding:3px;" selected>{{$v}}</option>
-                                        @else
-                                            <option value="{{$k}}" style="padding:3px;">{{$v}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            @endif
+
+                            <select name="pid"  class="form-control">
+                                @foreach($all_cate as $k=>$v)
+                                    @if($k == $cateInfo->pid)
+                                        <option value="{{$k}}" style="padding:3px;" selected>{{$v}}</option>
+                                    @else
+                                        <option value="{{$k}}" style="padding:3px;">{{$v}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
                         </div>
                     </div>
 

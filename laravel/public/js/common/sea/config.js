@@ -57,6 +57,8 @@ seajs.config({
 
         //后台分类管理
         'category':'admin/category.js',
+        //后台文章管理
+        'article':'admin/article.js',
 
     },
     // 预加载项
