@@ -92,8 +92,9 @@
                         <div class="form-horizontal">
 
                             <div class="clearfix editor">
-                                <div class="col-sm-10 col-sm-offset-1" >
-                                    <textarea name="content" id="myEditor" rows="10" class='form-control'></textarea>
+                                <div class="col-sm-10 col-sm-offset-1" style="height:400px">
+                                    @include('editor::head')
+                                    {!! Form::textarea('content', '', ['class' => 'form-control','id'=>'myEditor']) !!}
                                 </div>
 
                             </div>
@@ -101,7 +102,12 @@
                     </div>
                 </div>
 
-
+            </div>
+            <div class="over clearfix" style="text-align: center;padding: 200px 0 0 0">
+                <a href="javascript:void(0);">
+                    <button class="btn btn-default" style="margin-right:2.5%">取消</button>
+                    <button class="btn btn-noicon btn-green">保存</button>
+                </a>
             </div>
         </div>
 

@@ -14,7 +14,7 @@
 <script type="text/javascript" src="{{ asset('plugin/editor/js/MIDI.js') }}"></script>
 <script type="text/javascript" src="{{ asset('plugin/editor/js/fileupload.js') }}"></script>
 <script type="text/javascript" src="{{ asset('plugin/editor/js/bacheditor.js') }}"></script>
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+{{--<meta name="csrf-token" content="{{ csrf_token() }}" />--}}
 
 <script>
     $.ajaxSetup({
