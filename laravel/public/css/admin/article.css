@@ -1,0 +1,24 @@
+.ev_set p  {
+    background: #f4f5f5;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+}
+.ev_set .content  {
+    padding: 20px 20px 0;
+}
+.ev_set .control-label  {
+    float: left;
+    width: 160px;
+
+}
+.ev_set .form-horizontal > div  {
+    margin-bottom: 20px;
+}
+
+.ul-gray-alert li {
+    float: left;
+    padding: 5px 2px 5px 10px;
+    background: #EEEEEE;
+    margin-right: 15px;
+}

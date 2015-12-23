@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
+use App\Services\Category\CategoryService;
 
 
 class ArticleController extends BaseController
@@ -19,6 +20,11 @@ class ArticleController extends BaseController
 
 
     public function createShow(){
-        return $this->view('admin.article.create');
+        $allCategory = CategoryService::instance()->getAllCate();
+        return $this->view('admin.article.create')->with(
+            array(
+             'all_cate' =>$allCategory,
+            )
+        );
     }
 }
