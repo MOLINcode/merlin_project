@@ -32,6 +32,13 @@ class ResourceSpall
             'article' => array(
                 'admin/article.css',
             ),
+            //图片上传
+            'upload_image' => array(
+//                'plugin/iUploader.css',
+//                'plugin/iconfont/iconfont.css',
+                'plugin/upload_image.css',
+                'plugin/webuploader.css'
+            ),
         );
 
         return $CSS[$key];
@@ -69,6 +76,12 @@ class ResourceSpall
             'ueditor' => array(
                 'ueditor/ueditor.config.js',
                 'ueditor/ueditor.all.js'
+            ),
+
+            //upload image
+            'upload_image' => array(
+              'common/plugin/webuploader.js',
+              'common/plugin/upload.js',
             ),
 
             //注册页面的js

@@ -1,12 +1,15 @@
 @extends('layouts.master')
 @section('app_css')
     {{App\ViewSpall\ResourceSpall::includeCSS('article')}}
+    {{App\ViewSpall\ResourceSpall::includeCSS('upload_image')}}
 @endsection
 @section('app_js')
     <script>
-        seajs.use('article');
+        seajs.use(['iUploader','article']);
     </script>
+    {{App\ViewSpall\ResourceSpall::includeJS('upload_image')}}
 @endsection
+
 @section('content')
     <div class="main">
         <div class="main-title clearfix">
@@ -65,23 +68,47 @@
                         </div>
                     </div>
                 </div>
-                <!--图片封面-->
+
                 <div class="ev_set">
                     <p>图片封面</p>
                     <div class="content">
                         <div class="form-horizontal">
 
                             <div class="clearfix">
-                                <div class="col-sm-3 col-sm-offset-1">
-                                    <input type="file" class="form-control" name="data_file_name" id="choice_file" onchange="up_file.value=this.value" style="display:none;">
-                                    <input type="text" class="form-control" id="up_file" placeholder="选择图片文件">
+                                <div class="col-sm-11 col-sm-offset-1">
+                                    {{--<div id="MyUploader">--}}
+                                    {{--</div>--}}
+                                    <div id="wrapper">
+                                        <div id="container">
+                                            <!--头部，相册选择和格式选择-->
+
+                                            <div id="uploader">
+                                                <div class="queueList">
+                                                    <div id="dndArea" class="placeholder">
+                                                        <div id="filePicker"></div>
+                                                        <p>或将照片拖到这里，单次最多可选300张</p>
+                                                    </div>
+                                                </div>
+                                                <div class="statusBar" style="display:none;">
+                                                    <div class="progress">
+                                                        <span class="text">0%</span>
+                                                        <span class="percentage"></span>
+                                                    </div><div class="info"></div>
+                                                    <div class="btns">
+                                                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                 </div>
-                                <div class="col-sm-2">
-                                    <button class="btn-white" onClick="choice_file.click();">上传图片</button>
-                                </div>
+
                             </div>
                         </div>
+
+
                     </div>
+
+
                 </div>
 
                 <!--内容-->
@@ -103,15 +130,22 @@
                     </div>
                 </div>
 
+                <div class="ev_set">
+                    <p></p>
+                    <div class="over clearfix" style="text-align: center;padding: 10px 0 50px 0">
+                        <a href="javascript:void(0);">
+                            <button class="btn btn-default" style="margin-right:2.5%">取消</button>
+                            <button class="btn btn-noicon btn-green">保存</button>
+                        </a>
+                    </div>
+                </div>
+
             </div>
-            <div class="over clearfix" style="text-align: center;padding: 200px 0 50px 0">
-                <a href="javascript:void(0);">
-                    <button class="btn btn-default" style="margin-right:2.5%">取消</button>
-                    <button class="btn btn-noicon btn-green">保存</button>
-                </a>
-            </div>
+
         </div>
 
     </div>
 
 @endsection
+
+
