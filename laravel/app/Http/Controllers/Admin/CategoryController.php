@@ -36,7 +36,7 @@ class CategoryController extends BaseController
      * @return mixed
      */
     public function create()
-    {
+    {dd($this->params);
         $obj = new VO_Category;
         $type = $this->getParam('type');
         $all_cate = CategoryService::instance()->getAllCate();

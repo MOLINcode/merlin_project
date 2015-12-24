@@ -39,6 +39,12 @@ class ResourceSpall
                 'plugin/upload_image.css',
                 'plugin/webuploader.css'
             ),
+
+            //markdown
+            'markdown' => array(
+              'plugin/markdown/editormd.css',
+              'plugin/markdown/style.css',
+            ),
         );
 
         return $CSS[$key];
@@ -80,8 +86,12 @@ class ResourceSpall
 
             //upload image
             'upload_image' => array(
-              'common/plugin/webuploader.js',
-              'common/plugin/upload.js',
+              'plugin/webuploader.js',
+            ),
+            //markdown js
+            'markdown' => array(
+              'plugin/markdown/editormd.js',
+              'plugin/markdown/en.js',
             ),
 
             //注册页面的js

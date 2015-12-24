@@ -59,7 +59,6 @@ seajs.config({
         'category':'admin/category.js',
         //后台文章管理
         'article':'admin/article.js',
-        'iUploader':'common/plugin/iUploader.js',
     },
     // 预加载项
     preload: [
