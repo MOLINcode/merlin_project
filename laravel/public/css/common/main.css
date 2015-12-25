@@ -56,6 +56,9 @@ a {
 p {
     margin: 0;
 }
+.cursor {
+    cursor: pointer;
+}
 a:hover,
 a:focus {
     text-decoration: none;

@@ -1,9 +1,10 @@
-.ev_set p  {
+.ev_set .createTitle  {
     background: #f4f5f5;
     height: 30px;
     line-height: 30px;
     padding-left: 10px;
 }
+
 .ev_set .content  {
     padding: 20px 20px 0;
 }
@@ -78,4 +79,19 @@
     height: 20px;
     font-size: 14px;
     line-height: 23px;
+}
+.ul-gray-alert li {
+    float: left;
+    padding: 5px 2px 5px 10px;
+    background: #EEEEEE;
+    margin-right: 15px;
+}
+
+.ul-gray-alert li:last-child {
+    border: 1px dashed #EEEEEE;
+    background-color: transparent;
+    padding: 4px 10px;
+}
+.display-block{
+    display: block;
 }
