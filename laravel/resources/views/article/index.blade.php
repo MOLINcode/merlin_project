@@ -1,4 +1,8 @@
 @extends('layouts.front_master')
+@section('app_css')
+    {{App\ViewSpall\ResourceSpall::includeCSS('front')}}
+
+@endsection
 @section('content')
     <article>
         <div class="banner">

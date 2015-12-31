@@ -22,6 +22,14 @@ class ResourceSpall
                 'common/switch.css',
                 'common/user_center.css',
             ),
+            //前端
+            'front' => array(
+
+                'home/article/base.css',
+                'home/article/media.css',
+                'home/article/index.css',
+            ),
+
 
             //后台分类
             'category' => array(
@@ -45,6 +53,7 @@ class ResourceSpall
               'plugin/markdown/editormd.css',
               'plugin/markdown/style.css',
             ),
+
         );
 
         return $CSS[$key];
