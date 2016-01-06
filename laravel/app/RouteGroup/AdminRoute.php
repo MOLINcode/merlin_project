@@ -35,6 +35,9 @@ Route::group(array('prefix' => '/admin'),function () {
         Route::get('/article', 'Admin\ArticleController@index');
         //创建页
         Route::get('/article/create', 'Admin\ArticleController@createShow');
+
+        //执行创建
+        Route::post('/article/store/{article_id?}','Admin\ArticleController@store');
     });
 
 

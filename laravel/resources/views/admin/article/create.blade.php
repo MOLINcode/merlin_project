@@ -1,7 +1,6 @@
 @extends('layouts.master')
 @section('app_css')
     {{App\ViewSpall\ResourceSpall::includeCSS('article')}}
-    {{App\ViewSpall\ResourceSpall::includeCSS('upload_image')}}
 @endsection
 
 
@@ -15,7 +14,7 @@
                 <li><a href="javascript:;">创建文章</a></li>
             </ol>
         </div>
-        <div class="main-status">
+        <form id="createArticle" class="main-status">
             <div class="inner">
                 <!--基本信息-->
                 <div class="ev_set">
@@ -43,7 +42,7 @@
                             <div class="clearfix">
                                 <label for="test_name" class="control-label">所属标签</label>
                                 <ul class="ul-gray-alert clearfix alert_group_select">
-                                    <li class="select_group_item"><a href="#">test</a><i class="fa fa-times"></i></li>
+                                    <li class="select_group_item" data-tag_id=""><a href="#">test</a><i class="fa fa-times"></i></li>
                                     <li class="group_select">
                                         <div class="btn-group" role="group">
                                             <a type="button" class="dropdown-toggle cursor addTag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,36 +57,22 @@
 
                                 </ul>
                             </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ev_set">
-                    <p class="createTitle">图片封面</p>
-                    <div class="content">
-                        <div class="form-horizontal">
-
                             <div class="clearfix">
-                                <div class="col-sm-11 col-sm-offset-1">
-                                    <div id="uploader-demo" class="wu-example">
-                                        <div id="filePicker" class="webuploader-container"><div class="webuploader-pick">选择图片</div>
-                                            <div id="rt_rt_1a79eq4171kc61ooer0pqp85td4" style="position: absolute; top: 0px; left: 0px; width: 94px; height: 44px; overflow: hidden; bottom: auto; right: auto;">
-                                                <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple" accept="image/*"><label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
-                                            </div>
-                                        </div>
-                                        <div id="fileList" class="uploader-list"></div>
-                                   </div>
+                                <label for="choice_file" class="col-sm-3 control-label">文章封面</label>
+                                <div class="col-sm-6">
+                                    <input type="file" class="form-control" name="data_name" id="choice_file" onchange="up_file.value=this.value" style="display:none;">
+                                    <input type="text" class="form-control" id="up_file" placeholder="图片封面">
+                                </div>
+                                <div class="col-sm-2 fr">
+                                    <button class="btn-white"  onClick="choice_file.click();">上传图片</button>
                                 </div>
 
                             </div>
+
                         </div>
-
-
                     </div>
-
-
                 </div>
+
 
                 <!--内容-->
                 <div class="ev_set">
@@ -110,14 +95,14 @@
                     <div class="over clearfix" style="text-align: center;padding: 10px 0 50px 0">
                         <a href="javascript:void(0);">
                             <button class="btn btn-default" style="margin-right:2.5%">取消</button>
-                            <button class="btn btn-noicon btn-green">保存</button>
+                            <button class="btn btn-noicon btn-green" type="submit">保存</button>
                         </a>
                     </div>
                 </div>
 
             </div>
 
-        </div>
+        </form>
 
     </div>
 
@@ -125,9 +110,7 @@
 @section('app_js')
     {{App\ViewSpall\ResourceSpall::includeJS('upload_image')}}
     <script>
-        seajs.use(['article'],function(article){
-            article.upload_image();
-        });
+        seajs.use('article')
     </script>
 @endsection
 

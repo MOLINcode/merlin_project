@@ -66,7 +66,7 @@ class ResourceSpall
                 'common/sea/sea.js',
                 'common/sea/config.js',
                 'common/jquery/jquery.min.js',
-                //'common/jquery/jquery.form.js',
+                'common/jquery/jquery.form.js',
             ),
             'commonFooterJS' => array(
                 'common/jquery/jquery-ui/jquery-ui.min.js',

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Services\Category\CategoryService;
+use Request;
 
 
 class ArticleController extends BaseController
@@ -26,5 +27,9 @@ class ArticleController extends BaseController
              'all_cate' =>$allCategory,
             )
         );
+    }
+
+    public function store(Request $request){
+        dd($request);
     }
 }
