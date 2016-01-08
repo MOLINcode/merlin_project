@@ -8,8 +8,10 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
+use App\Http\Requests\ArticleForm;
 use App\Services\Category\CategoryService;
-use Request;
+
+
 
 
 class ArticleController extends BaseController
@@ -24,12 +26,38 @@ class ArticleController extends BaseController
         $allCategory = CategoryService::instance()->getAllCate();
         return $this->view('admin.article.create')->with(
             array(
-             'all_cate' =>$allCategory,
+                'all_cate' =>$allCategory,
+
             )
         );
     }
 
-    public function store(Request $request){
-        dd($request);
+    public function store(){
+        dd($this->params);
+        //
+        try {
+
+            $data = array(
+                'title' => trim($this->params['title']),
+                'user_id' => Auth::user()->id,
+                'cate_id' => $this->params['cate_id'],
+                'content' => $this->params['content'],
+                'tags' => Tag::SetArticleTags($this->params['tags']),
+                'pic' => Article::uploadImg('pic'),
+            );
+
+            if ($article = Article::create($data)) {
+                if (ArticleStatus::initArticleStatus($article->id)) {
+                    // 清除缓存
+                    Cache::tags(Article::REDIS_ARTICLE_PAGE_TAG)->flush();
+                    Notification::success('恭喜又写一篇文章');
+                    return redirect()->route('backend.article.index');
+                } else {
+                    self::destroy($article->id);
+                }
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(array('error' => $e->getMessage()))->withInput();
+        }
     }
 }

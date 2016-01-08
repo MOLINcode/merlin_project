@@ -16,6 +16,7 @@ class ResourceSpall
                 'common/bootstrap/bootstrap-switch.min.css',
                 'common/jquery-ui/jquery-ui.min.css',
                 'common/bootstrap/bootstrap-datetimepicker.css',
+                'common/bootstrap/bootstrap-tokenfield.css',
                 'common/font-awesome.min.css',
                 'common/main.css',
                 'common/slider.css',
@@ -40,20 +41,11 @@ class ResourceSpall
             'article' => array(
                 'admin/article.css',
             ),
-            //图片上传
-            'upload_image' => array(
-//                'plugin/iUploader.css',
-//                'plugin/iconfont/iconfont.css',
-                'plugin/upload_image.css',
-                'plugin/webuploader.css'
-            ),
 
-            //markdown
-            'markdown' => array(
-              'plugin/markdown/editormd.css',
-              'plugin/markdown/style.css',
-            ),
+            //tags
+            "tag" => array(
 
+            ),
         );
 
         return $CSS[$key];
@@ -72,6 +64,7 @@ class ResourceSpall
                 'common/jquery/jquery-ui/jquery-ui.min.js',
                 'common/bootstrap/bootstrap.min.js',
                 'common/bootstrap/bootstrap-switch.min.js',
+                'common/bootstrap/bootstrap-tokenfield.js',
                 'common/bootstrap/date/bootstrap-datetimepicker.js',
                 'common/bootstrap/date/bootstrap-datetimepicker.zh-CN.js',
                 'config.js',
@@ -93,15 +86,6 @@ class ResourceSpall
                 'ueditor/ueditor.all.js'
             ),
 
-            //upload image
-            'upload_image' => array(
-              'plugin/webuploader.js',
-            ),
-            //markdown js
-            'markdown' => array(
-              'plugin/markdown/editormd.js',
-              'plugin/markdown/en.js',
-            ),
 
             //注册页面的js
             'register' => array(

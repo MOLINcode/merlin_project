@@ -14,6 +14,7 @@ use App\Models\VO\Request\rVoUserInfo;
 use App\Models\BaseModel;
 use App\Services\Tool\CacheService;
 use App\Constants\CacheExpireEnum;
+use Illuminate\Support\Facades\Cookie;
 
 class UserService extends BaseService
 {
@@ -147,6 +148,7 @@ class UserService extends BaseService
      */
     public function createUserInfoCache($oUserInfo){
         $token = md5($oUserInfo->user_id);
+        Cookie::make('user_token',$token,CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
         $sUserInfo = json_encode($oUserInfo);
         CacheService::instance()->set($token, $sUserInfo, CacheExpireEnum::EXPIRE_ACTIVE_EMAIL);
         return true;
