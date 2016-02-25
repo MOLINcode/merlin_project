@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', '10.0.5.250'),
+            'host'      => env('DB_HOST', '127.0.0.1'),
             'database'  => env('DB_DATABASE', 'laraTest'),
             'username'  => env('DB_USERNAME', 'root'),
             'password'  => env('DB_PASSWORD', '123456'),

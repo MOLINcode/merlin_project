@@ -10,6 +10,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\BaseController;
 use App\Http\Requests\ArticleForm;
 use App\Services\Category\CategoryService;
+use App\Models\Tag;
+use App\Models\Article;
 
 
 
@@ -33,13 +35,12 @@ class ArticleController extends BaseController
     }
 
     public function store(){
-        dd($this->params);
         //
         try {
 
             $data = array(
                 'title' => trim($this->params['title']),
-                'user_id' => Auth::user()->id,
+                'user_id' => null,
                 'cate_id' => $this->params['cate_id'],
                 'content' => $this->params['content'],
                 'tags' => Tag::SetArticleTags($this->params['tags']),
