@@ -37,7 +37,6 @@ class ArticleController extends BaseController
     public function store(){
         //
         try {
-
             $data = array(
                 'title' => trim($this->params['title']),
                 'user_id' => null,
@@ -46,7 +45,6 @@ class ArticleController extends BaseController
                 'tags' => Tag::SetArticleTags($this->params['tags']),
                 'pic' => Article::uploadImg('pic'),
             );
-
             if ($article = Article::create($data)) {
                 if (ArticleStatus::initArticleStatus($article->id)) {
                     // 清除缓存
